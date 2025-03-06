@@ -535,12 +535,16 @@ watch(isConnected, (newValue, oldValue) => {
             <!--            <button @click="showDialog('swapCompleted')">swap完成</button>-->
           </div>
           <button class="hd_button">
-            <img width="32" height="32"
+            <img width="32" height="32" class="pc_open"
                  alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  style="border-radius: 50%;">
+
+            <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#CCF33A" viewBox="0 0 40 40" style="fill: #CCF33A"><path fill-rule="evenodd" d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z" clip-rule="evenodd"></path></svg>
+
             <div class="wladd" v-if="isConnected">{{ address }}</div>
-            <div class="wladd" v-else>Connect Wallet</div>
+            <div class="wladd pc_open" v-else>Connect Wallet</div>
+
             <!--            <div class="wladd_close">-->
             <!--              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"-->
             <!--                   style="fill: rgb(191, 240, 9);">-->
@@ -560,13 +564,13 @@ watch(isConnected, (newValue, oldValue) => {
             <div class="txt_box1">
               <div class="txt1">Prepare for</div>
               <div class="txt2">Epoch#2 Missions</div>
-              <div class="txt1">Unlock Your Point Boost!</div>
+              <div class="txt1">Unlock USDT Exchange Rewards!</div>
             </div>
             <div class="txt_box2">
-              The Epoch#2 launch is just around the corner!<br/>
-              Start your DeFi journey and explore a diverse range of ecosystem tokens!
+              Epoch#2 Launching Soon – Claim Your Vouchers!<br/>
+              Start DeFi & Swap Tokens for USDT!
             </div>
-            <div class="txt_box3">
+            <div class="txt_box3 pc_open">
               <span class="numbers">{{ countdown.days }}</span>&nbsp;
               <span>Days</span>&nbsp;
               <span style="color:rgba(255, 255, 255, 0.99);">:</span>&nbsp;
@@ -579,6 +583,18 @@ watch(isConnected, (newValue, oldValue) => {
               <span class="numbers">{{ countdown.seconds }}s</span>&nbsp;
               <span>Left</span>
             </div>
+
+
+            <div class="txt_box3 mo_open">
+              <span class="numbers">{{ countdown.days }}</span>&nbsp;
+              <span style="color:rgba(255, 255, 255, 0.99);">:</span>&nbsp;
+              <span class="numbers">{{ countdown.hours }}</span>&nbsp;
+              <span style="color:rgba(255, 255, 255, 0.99);">:</span>&nbsp;
+              <span class="numbers">{{ countdown.minutes }}</span>&nbsp;
+              <span style="color:rgba(255, 255, 255, 0.99);">:</span>&nbsp;
+              <span class="numbers">{{ countdown.seconds }}</span>&nbsp;
+              <span>Left</span>
+            </div>
           </div>
           <div class="swap_box">
             <div class="ctv_box" style="display: flex; flex-flow: row nowrap;">
@@ -587,9 +603,7 @@ watch(isConnected, (newValue, oldValue) => {
               <div class="in_box_text">
                 <div style="font-weight: bold; color: #909090; font-size: 22px;">USDT Voucher</div>
                 <div>
-                  금액만큼 kaia기반으로
-                  usdt 와 1:1 교환
-                  가능합니다.
+                  An NFT-based digital voucher redeemable for USDT
                 </div>
               </div>
 
@@ -609,7 +623,7 @@ watch(isConnected, (newValue, oldValue) => {
               <img src="/public/images/bottom.png" alt="">
             </div>
 
-            <div class="" style="padding-left: 20px;">
+            <div class="mo_to" style="padding-left: 20px;">
               To
             </div>
 
@@ -695,19 +709,22 @@ watch(isConnected, (newValue, oldValue) => {
                  style="width: 148px;height: 24px; justify-content:flex-start;">
           </div>
           <button class="hd_button">
-            <img width="32" height="32"
+            <img width="32" height="32" class="pc_open"
                  alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  style="border-radius: 50%;">
-            <div class="wladd">0x21f...b6c</div>
-            <div class="wladd_close">
+
+            <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#CCF33A" viewBox="0 0 40 40" style="fill: #CCF33A"><path fill-rule="evenodd" d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z" clip-rule="evenodd"></path></svg>
+            <div class="wladd" v-if="isConnected">{{ address }}</div>
+            <div class="wladd pc_open" v-else>Connect Wallet</div>
+            <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
                    style="fill: rgb(191, 240, 9);">
                 <path fill-rule="evenodd"
                       d="M2.227 2.227c.22-.22.576-.22.796 0L6 5.205l2.977-2.978a.563.563 0 0 1 .796.796L6.796 6l2.977 2.977a.563.563 0 0 1-.796.796L6 6.796 3.023 9.772a.563.563 0 0 1-.796-.796L5.205 6 2.227 3.023a.563.563 0 0 1 0-.796"
                       clip-rule="evenodd"></path>
               </svg>
-            </div>
+            </div> -->
           </button>
         </header>
         <main>
@@ -717,10 +734,9 @@ watch(isConnected, (newValue, oldValue) => {
             <div>
               <img src="/images/Img_Kaia_Wallet.png" style="max-width: 100%;"/>
             </div>
-            <div class="font_1">새롭게 태어난 <br/> Kaia Wallet 시작하기</div>
-            <div class="font_2">보유하고 있는 다양한 디지털 자산들을 한눈에 확인하세요. <br/>
-              쉽고 편리하게 토큰과 <br/>
-              코인을 전송, 교환할 수 있습니다.
+            <div class="font_1">Welcome to Kaia, where your<br/>Web3 journey begins<br/>PLAY NOW</div>
+            <div class="font_2">
+              From top-tier DeFi protocols to AAA<br/> games, real-world assets, fandoms,<br/> communities and more, Kaia’s <br/>vibrant ecosystem is enjoyed by millions <br/> across Asia everyday.
             </div>
 
           </div>
@@ -740,19 +756,22 @@ watch(isConnected, (newValue, oldValue) => {
                  style="width: 148px;height: 24px; justify-content:flex-start;">
           </div>
           <button class="hd_button">
-            <img width="32" height="32"
+            <img width="32" height="32" class="pc_open"
                  alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  style="border-radius: 50%;">
-            <div class="wladd">0x21f...b6c</div>
-            <div class="wladd_close">
+
+            <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#CCF33A" viewBox="0 0 40 40" style="fill: #CCF33A"><path fill-rule="evenodd" d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z" clip-rule="evenodd"></path></svg>
+            <div class="wladd" v-if="isConnected">{{ address }}</div>
+            <div class="wladd pc_open" v-else>Connect Wallet</div>
+            <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
                    style="fill: rgb(191, 240, 9);">
                 <path fill-rule="evenodd"
                       d="M2.227 2.227c.22-.22.576-.22.796 0L6 5.205l2.977-2.978a.563.563 0 0 1 .796.796L6.796 6l2.977 2.977a.563.563 0 0 1-.796.796L6 6.796 3.023 9.772a.563.563 0 0 1-.796-.796L5.205 6 2.227 3.023a.563.563 0 0 1 0-.796"
                       clip-rule="evenodd"></path>
               </svg>
-            </div>
+            </div> -->
           </button>
         </header>
         <main>
@@ -762,11 +781,8 @@ watch(isConnected, (newValue, oldValue) => {
             <div>
               <img src="/images/1719900971275.png"/>
             </div>
-            <div class="font_1">기존 Kaikas 대비 무엇이 <br/>달라졌나요?</div>
-            <div class="font_2">Kaia Wallet 앱에서는 소셜 로그인을 통해 <br/>
-              월렛을 보다 안전하고 손쉽게 이용할 수 있습니다. <br/>
-              Kaia 기반 토큰을 한 눈에 확인하고 <br/>
-              안전하게 관리해보세요.
+            <div class="font_1">What has changed compared <br/> to the existing Kaikas?</div>
+            <div class="font_2">The Kaia Wallet app allows you to use your<br/>wallet more safely and easily through social login.
             </div>
 
           </div>
@@ -786,19 +802,22 @@ watch(isConnected, (newValue, oldValue) => {
                  style="width: 148px;height: 24px; justify-content:flex-start;">
           </div>
           <button class="hd_button">
-            <img width="32" height="32"
+            <img width="32" height="32" class="pc_open"
                  alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
                  style="border-radius: 50%;">
-            <div class="wladd">0x21f...b6c</div>
-            <div class="wladd_close">
+
+            <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#CCF33A" viewBox="0 0 40 40" style="fill: #CCF33A"><path fill-rule="evenodd" d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z" clip-rule="evenodd"></path></svg>
+            <div class="wladd" v-if="isConnected">{{ address }}</div>
+            <div class="wladd pc_open" v-else>Connect Wallet</div>
+            <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
                    style="fill: rgb(191, 240, 9);">
                 <path fill-rule="evenodd"
                       d="M2.227 2.227c.22-.22.576-.22.796 0L6 5.205l2.977-2.978a.563.563 0 0 1 .796.796L6.796 6l2.977 2.977a.563.563 0 0 1-.796.796L6 6.796 3.023 9.772a.563.563 0 0 1-.796-.796L5.205 6 2.227 3.023a.563.563 0 0 1 0-.796"
                       clip-rule="evenodd"></path>
               </svg>
-            </div>
+            </div> -->
           </button>
         </header>
         <main>
@@ -808,11 +827,11 @@ watch(isConnected, (newValue, oldValue) => {
             <div>
               <img src="/images/1719900989631.png"/>
             </div>
-            <div class="font_1">이전 Kaikas 앱에서<br/>사용하던 지갑과 연동이 되나요?</div>
+            <div class="font_1">Can it be linked with the wallet <br/> used in the previous Kaikas app?</div>
             <div class="font_2">
-              기존 Kaikas 서비스 이용자도<br/>
-              Kaia Wallet 앱의 지갑 불러오기를 통해<br/>
-              사용하시던 Kaikas 지갑을 가져오실 수 있습니다.
+              xisting Kaikas service users also<br/>
+              By loading the wallet in the Kaia Wallet app<br/>
+              You can bring your used Kaikas wallet
             </div>
 
           </div>
@@ -843,8 +862,8 @@ watch(isConnected, (newValue, oldValue) => {
 
 .swiper-pagination-bullet {
   margin: 10px 0;
-  width: 27px;
-  height: 27px;
+  width: 15px;
+  height: 15px;
   background-color: #eee;
 }
 
