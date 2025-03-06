@@ -1,0 +1,1003 @@
+@import './base.css';
+
+@font-face {
+  font-family: Red Hat Display;
+  src: url(/fonts/RedHatDisplay-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Red Hat Display;
+  src: url(/fonts/RedHatDisplay-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal
+}
+
+@font-face {
+  font-family: RedHatDisplay;
+  src: url(/fonts/RedHatDisplay-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: RedHatDisplay;
+  src: url(/fonts/RedHatDisplay-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url(/fonts/Manrope-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url(/fonts/Manrope-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url(/fonts/Manrope-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal
+}
+
+.fmRedHatDisplay1-4 {
+  font-family: Red Hat Display;
+  font-weight: 400;
+}
+
+.fmRedHatDisplay1-7 {
+  font-family: Red Hat Display;
+  font-weight: 700;
+}
+
+.fmRedHatDisplay2-4 {
+  font-family: RedHatDisplay;
+  font-weight: 400;
+}
+
+.fmRedHatDisplay2-7 {
+  font-family: RedHatDisplay;
+  font-weight: 700;
+}
+
+.fmManrope4 {
+  font-family: Manrope;
+  font-weight: 400;
+}
+
+.fmManrope6 {
+  font-family: Manrope;
+  font-weight: 600;
+}
+
+.fmManrope7 {
+  font-family: Manrope;
+  font-weight: 700;
+}
+
+* {
+  transition: all .3;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  font-family: Manrope, sans-serif;
+  height: 100%;
+  background-color: #040404;
+  font-size: 14px;
+}
+
+
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page header {
+  background-color: #040404;
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 1px solid #3D3D3D;
+}
+
+.page .hd_button {
+  border: 1px solid #CCF33A;
+  color: #CCF33A;
+  border-radius: 30px;
+  width: 170px;
+  padding: 5px;
+  text-align: center;
+  background: none;
+  display: flex;
+}
+
+.wladd {
+  line-height: 32px;
+  padding: 0px 10px;
+  font-weight: bold;
+}
+
+.wladd_close {
+  flex: 1;
+  padding-top: 8px;
+}
+
+.page main {
+  flex: 1;
+}
+
+.font_1 {
+  color: #fff;
+  font-size: 42px;
+  line-height: 46px;
+}
+
+.font_2 {
+  color: #878787;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.page footer {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page footer .btn_next {
+  border: 1px solid #505050;
+  border-radius: 30px;
+  width: 200px;
+  padding: 6px 0;
+  color: rgba(204, 243, 58, 0.5);
+  text-align: center;
+  font-size: 22px;
+  cursor: pointer;
+  background: url('/public/images/btn_bottom.png') no-repeat 135px center;
+}
+
+.page footer .btn_next:hover {
+  background-color: #333;
+}
+
+.page.p1 {
+  background: rgb(17, 17, 17) url('/public/images/bg.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.page.p1 main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.page.p1 .content_box1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  color: #bff009;
+  text-align: center;
+}
+
+.page.p1 .content_box1 .waiting_box {
+  background-color: #bff009;
+  color: rgb(4, 4, 4);
+  font-family: RedHatDisplay;
+  font-size: 20px;
+  border-radius: 270px;
+  padding: 9px 24px;
+}
+
+.page.p1 .content_box1 .waiting_box .numbers {
+  font-weight: 700;
+}
+
+.page.p1 .txt_box1 {}
+
+.page.p1 .txt_box1 .txt1 {
+  font-size: 32px;
+  line-height: 40px;
+  font-family: RedHatDisplay;
+  font-weight: 700;
+}
+
+.page.p1 .txt_box1 .txt2 {
+  font-size: 56px;
+  line-height: 72px;
+  font-family: RedHatDisplay;
+  font-weight: 700;
+}
+
+.page.p1 .txt_box2 {
+  color: rgb(200, 200, 200);
+  font-size: 14px;
+  line-height: 20px;
+  font-family: Manrope;
+  font-weight: 400;
+}
+
+.page.p1 .txt_box3 {
+  font-size: 20px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.page.p1 .txt_box3 .numbers {
+  font-family: RedHatDisplay;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.99);
+}
+
+.page.p1 .swap_box {
+  border: 3px solid #CCF33A;
+  border-radius: 30px;
+  background-color: #111111;
+  max-width: 400px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.page.p1 .swap_box .choice_box {
+  background-color: #040404;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ccc;
+}
+
+.page.p1 .swap_box .choice_box .wallet_addr {
+  margin-top: 20px;
+  background-color: #222;
+  border-radius: 30px;
+  padding: 5px 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.page.p1 .swap_box .choice_box .balance {
+  background-color: rgba(255, 255, 255, 0.13);
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+}
+
+.page.p1 .swap_box .choice_box .inp {
+  text-decoration: underline 3px;
+  font-size: 28px;
+  line-height: 36px;
+  font-family: RedHatDisplay;
+  font-weight: 700;
+  min-width: 100px;
+  max-width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.page.p1 .swap_box .btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.page.p1 .swap_box .btn_box .btn {
+  border: 1px solid #4b4b4b;
+  background-color: #303030;
+  border-radius: 30px;
+  line-height: 40px;
+  padding: 3px 3px 3px 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+}
+
+.page.p1 .swap_box .btn_box .btn .btn_text {
+  flex: 1;
+  margin-right: 10px;
+  color: #4B4B4A;
+  font-weight: bold;
+}
+
+.page.p1 .swap_box .btn_box .btn .proto_icon {
+  width: 40px;
+  height: 40px;
+  background-color: #3F3F3F;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.page.p1 .swap_box .btn_box .btn .proto_icon svg {
+  margin-top: 10px;
+  color: #606060;
+}
+
+
+
+.page.p1 .swap_box .btn_box .btn_on {
+  border: 1px solid #BFF009;
+  background-color: #BFF009;
+  border-radius: 30px;
+  line-height: 40px;
+  padding: 3px 3px 3px 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+}
+
+.page.p1 .swap_box .btn_box .btn_on .btn_text {
+  flex: 1;
+  margin-right: 10px;
+  color: #040404;
+  font-weight: bold;
+}
+
+.page.p1 .swap_box .btn_box .btn_on .proto_icon {
+  width: 40px;
+  height: 40px;
+  background-color: #040404;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.page.p1 .swap_box .btn_box .btn_on .proto_icon svg {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+
+
+
+
+
+.page.p2 {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.page.p2 main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.page.p2 .content_box1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  color: #bff009;
+  text-align: center;
+}
+
+
+
+/************************ g_toast ************************/
+.g_toast {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  border-radius: 20px;
+  padding: 20px;
+  width: 380px;
+  margin: 0 auto;
+  z-index: 15;
+  box-shadow:
+    0 10px 50px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+  transform: translateY(-200%);
+}
+
+.g_toast.show {
+  transform: translateY(0);
+}
+
+.g_toast.swapProgress {
+  background-color: #1f5214;
+  color: #7eda6c;
+}
+
+.g_toast.swapCompleted {
+  background-color: #014170;
+  color: #96cfe4;
+}
+
+/************************ End g_toast ************************/
+
+
+
+
+/************************ dialog ************************/
+.g_backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.g_backdrop .bg {
+  background-color: rgb(4, 4, 4);
+  transition: all 0.2s ease;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.g_backdrop .bg.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.g_backdrop .g_dialog {
+  min-width: 320px;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(4, 4, 4, 0.05) 0px 16px 32px 0px;
+}
+
+/************************ selectTokenLayer ************************/
+.g_backdrop.selectTokenLayer .g_dialog {
+  height: 540px;
+}
+
+.g_backdrop.selectTokenLayer .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0;
+}
+
+.g_backdrop.selectTokenLayer .top .title {
+  color: #fff;
+  font-size: 20px;
+  font-family: RedHatDisplay;
+  font-weight: 700;
+}
+
+.g_backdrop.selectTokenLayer .token_search {
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+.g_backdrop.selectTokenLayer .token_search input {
+  border-radius: 30px;
+  color: #fff;
+  background-color: #222;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: Manrope;
+  font-weight: 600;
+}
+
+.g_backdrop.selectTokenLayer .token_list {
+  flex: 1;
+  overflow-y: scroll;
+  margin: 28px 0;
+  min-height: 300px;
+}
+
+.g_backdrop.selectTokenLayer .token_item {
+  display: flex;
+  margin-bottom: 28px;
+  border-left: 3px solid rgb(191, 240, 9);
+  padding: 0 28px;
+}
+
+.g_backdrop.selectTokenLayer .token_icon {
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid #fff;
+}
+
+.g_backdrop.selectTokenLayer .token_name {
+  flex: 1;
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/************************ walletConnection ************************/
+.g_backdrop.walletConnection {}
+
+.g_backdrop.walletConnection .g_dialog {
+  height: auto;
+  box-shadow:
+    0 20px 50px rgba(255, 255, 255, 0.1);
+}
+
+.g_backdrop.walletConnection .close_button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 24px 0;
+}
+
+.g_backdrop.walletConnection .top {
+  text-align: center;
+  line-height: 36px;
+  padding-bottom: 20px;
+}
+
+.g_backdrop.walletConnection .bottom {
+  flex: 1;
+  background-color: rgb(4, 4, 4);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.g_backdrop.walletConnection .bottom .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.g_backdrop.walletConnection .bottom .wallet_type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.g_backdrop.walletConnection .bottom .wallet_type .btn {
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 10px 0;
+  flex: 1;
+  margin: 0 3px;
+}
+
+.g_backdrop.walletConnection .bottom .other_btns {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 12px 10px;
+}
+
+.g_backdrop.walletConnection .bottom .other_btns .btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 8px 0;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/************************ mobileApp ************************/
+.g_backdrop.mobileApp {}
+
+.g_backdrop.mobileApp .g_dialog {
+  height: auto;
+  box-shadow:
+    0 20px 50px rgba(255, 255, 255, 0.1);
+}
+
+.g_backdrop.mobileApp .close_button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 24px 0;
+}
+
+.g_backdrop.mobileApp .top {}
+
+
+
+
+/************************ pleaseConfirm ************************/
+.g_backdrop.pleaseConfirm {}
+
+.g_backdrop.pleaseConfirm .g_dialog {
+  height: auto;
+  box-shadow:
+    0 20px 50px rgba(255, 255, 255, 0.1);
+}
+
+.g_backdrop.pleaseConfirm .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0;
+}
+
+.g_backdrop.pleaseConfirm .top .title {
+  color: #fff;
+  font-size: 20px;
+  font-family: RedHatDisplay;
+  font-weight: 700;
+}
+
+.g_backdrop.pleaseConfirm .close_button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 24px 0;
+}
+
+.g_backdrop.pleaseConfirm .confirm_box {
+  padding: 24px;
+}
+
+.g_backdrop.pleaseConfirm .confirm_box .c_from {
+  color: #616161;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs {
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs div {
+  height: 30px;
+  line-height: 30px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .sw_data {
+  text-align: right;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .sw_data div {
+  height: 20px;
+  line-height: 20px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .sw_data strong {
+  color: #fff;
+  padding-right: 10px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .sw_data span {
+  color: #D2544F;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs div img {
+  margin-top: 3px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .c_prs {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  margin: 0px 0px 0px 10px;
+}
+
+.g_backdrop.pleaseConfirm .coin_prs .c_name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #909090;
+  margin: 0px 10px;
+}
+
+.sw_title {
+  flex: 1;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.confirm_box .btn_box .btn_on {
+  border: 1px solid #BFF009;
+  background-color: #BFF009;
+  border-radius: 30px;
+  line-height: 40px;
+  padding: 3px 3px 3px 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+}
+
+.confirm_box .btn_box .btn_on .btn_text {
+  flex: 1;
+  margin-right: 10px;
+  color: #040404;
+  font-weight: bold;
+}
+
+.confirm_box .btn_box .btn_on .proto_icon {
+  width: 40px;
+  height: 40px;
+  background-color: #040404;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.confirm_box .btn_box .btn_on .proto_icon svg {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+
+.ccheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ccheckbox input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ccheckbox .checkmark {
+  height: 15px;
+  width: 15px;
+  background-color: #888;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.ccheckbox:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+.ccheckbox input:checked~.checkmark {
+  background-color: #BFF009;
+}
+
+.ccheckbox .checkmark:after {
+  content: "";
+  display: none;
+}
+
+.ccheckbox input:checked~.checkmark:after {
+  display: block;
+}
+
+.ccheckbox .checkmark:after {
+  position: relative;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid #777;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.sw_btnbox {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn_1 {
+  width: 30%;
+}
+
+.btn_1 div {
+  border: 1px solid #CCF33A;
+  color: #CCF33A;
+  text-align: center;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.btn_2 {
+  width: 70%;
+}
+
+.btn_2 div {
+  border: 1px solid #414141;
+  color: #31393F;
+  text-align: center;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #242424;
+  font-weight: bold;
+  margin-left: 15px;
+  transition: all 0.2s;
+}
+
+.btn_2 .on {
+  border: 1px solid #CCF33A;
+  color: #040404;
+  text-align: center;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #CCF33A;
+  margin-left: 15px;
+  font-weight: 700;
+}
+
+/************************ End dialog ************************/
+
+
+
+
+
+@media (max-width: 1024px) {
+  .page.p1 main {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .page.p1 .content_box1 {
+    gap: 10px;
+  }
+
+  .page.p1 .txt_box1 .txt1 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .page.p1 .txt_box1 .txt2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .page.p1 .txt_box2 {
+    line-height: 20px;
+    display: none;
+  }
+
+  .page.p1 .txt_box3 {
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .page.p1 .txt_box3 .numbers {
+    font-family: RedHatDisplay;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.99);
+  }
+
+  .page.p1 .swap_box {
+    width: 360px;
+    min-height: 300px;
+  }
+
+  .page.p1 .swap_box .choice_box .inp {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .page.p1 .swap_box .btn_box {
+    margin: 10px 0;
+  }
+
+  .page.p1 .swap_box .btn_box .btn {
+    padding: 6px 32px;
+  }
+
+  .page.p1 footer {
+    padding: 0 0 20px 0;
+  }
+
+  .page.p1 footer .btn_next {
+    font-size: 22px;
+  }
+
+  .g_toast {
+    width: 320px;
+  }
+
+
+
+.swap_box .ctv_box .in_box  img{
+    width: 70px;
+  }
+
+  
+.swap_box .ctv_box .in_box_text{
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.swap_box .ctv_box .ctv_bticon{
+  text-align: center;
+  margin:0px 0 0 0;
+}
+
+}
+
+.ctv_box {
+  width: 100%;
+  background: #1A1A1A;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+
+.ctv_bticon{
+  text-align: center;
+  margin:20px 0 0 0;
+}
+
+.in_box {
+  background-color: #040404;
+  border-radius: 10px;
+  padding: 5px 5px 0px 5px;
+}
+
+.in_box  img{
+  width: 100px;
+}
+
+.in_box_text {
+  color: #666666;
+  font-size: 20px;
+  padding: 15px 0px 0px 20px;
+}
+
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 应用动画到 SVG */
+.loading-svg {
+  animation: rotate 1s linear infinite;
+}
