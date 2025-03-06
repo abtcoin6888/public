@@ -89,7 +89,7 @@ const connectKaiaMobile = () =>{
   console.log(connect({connector:injected()}))
 
   if (connect({connector:injected()}) === undefined){
-    window.open("https://app.kaiawallet.io/u/public-evw.pages.dev")
+    window.open("https://app.kaiawallet.io/u/https://public-evw.pages.dev")
   }
   connect({connector:injected()})
 }
@@ -98,7 +98,7 @@ const connectKaiaMobile = () =>{
 const connectKlipMobile = () =>{
   console.log(connect({connector:injected()}))
   if (connect({connector:injected()}) === undefined){
-    window.open('https://klipwallet.com/?target=public-evw.pages.dev')
+    window.open('https://klipwallet.com/?target=https://public-evw.pages.dev')
   }
   connect({connector:injected()})
 }
