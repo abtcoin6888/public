@@ -12,12 +12,17 @@
   },
   "dependencies": {
     "@metamask/sdk": "^0.32.1",
+    "@tanstack/react-query": "^5.67.1",
+    "@tanstack/vue-query": "^5.67.1",
+    "@wagmi/core": "^2.16.5",
     "caver-js": "^1.12.2",
     "pinia": "^3.0.1",
     "swiper": "^10.0.0",
     "thirdweb": "^5.90.3",
+    "viem": "~2.23.6",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
+    "wagmi": "^2.14.12",
     "web3": "^4.16.0"
   },
   "devDependencies": {
