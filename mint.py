@@ -1,9 +1,9 @@
 import requests
 
-url = "https://thirdweb-engine.apidocumentation.com/contract/80002/0x000000000000000000000000000000000000dead/write"
+url = "https://thirdweb-engine.apidocumentation.com/contract/8217/0x2Fd27032b5eE51b3430aC3EC32a2fB0EFB1702f6/write"
 
 payload = {
-    "functionName": "function mintTo(address to, uint256 amount)",
+    "functionName": "function lazyMint(uint256 _amount, string _baseURIForTokens, bytes _data) returns (uint256 batchId)",
     "args": [1730380951, "0x09530565aC1Ce08C3621f5B24Fca6d9a76574620", ["a", "b", "c"]],
     "txOverrides": {
         "gas": "530000",

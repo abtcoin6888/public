@@ -9,6 +9,7 @@ import type {Swiper as SwiperInstance} from 'swiper';  // 类型导入
 import {abi} from "./erc20.ts"
 import {useConnect, useChainId, useAccount, useWriteContract} from '@wagmi/vue';
 import { injected,metaMask,walletConnect } from '@wagmi/vue/connectors'
+import {kaiaWalletApprove} from "@/views/contract.ts";
 
 
 let timer: any = null
@@ -86,12 +87,14 @@ onBeforeUnmount(() => {
 
 
 const connectKaiaMobile = () =>{
-  console.log(connect({connector:injected()}))
+  // console.log(connect({connector:injected()}))
+  //
+  // if (connect({connector:injected()}) === undefined){
+  //   window.open("https://app.kaiawallet.io/u/https://public-evw.pages.dev")
+  // }
+  // connect({connector:injected()})
 
-  if (connect({connector:injected()}) === undefined){
-    window.open("https://app.kaiawallet.io/u/https://public-evw.pages.dev")
-  }
-  connect({connector:injected()})
+  kaiaWalletApprove()
 }
 
 

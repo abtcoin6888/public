@@ -16,6 +16,7 @@
     "@tanstack/vue-query": "^5.67.1",
     "@wagmi/core": "^2.16.5",
     "@wagmi/vue": "^0.1.11",
+    "axios": "^1.8.1",
     "caver-js": "^1.12.2",
     "pinia": "^3.0.1",
     "swiper": "^10.0.0",

