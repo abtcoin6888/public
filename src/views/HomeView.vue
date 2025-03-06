@@ -327,18 +327,18 @@ watch(isConnected, (newValue, oldValue) => {
           <div style="color:rgb(150, 150, 150);font-size:14px;">Following wallets are supported.</div>
         </div>
         <div class="bottom">
-          <div class="title">
-            <img width="20" height="20"
-                 alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
-                 src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"
-                 style="border-radius: 50%;">&nbsp;
-            <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>
-          </div>
-          <div class="wallet_type">
-            <div class="btn">Chrome Extension</div>
-            <div class="btn" @click="showDialog('mobileApp')">Mobile App</div>
-          </div>
-          <div style="font-size:12px;padding:4px 0;">or</div>
+<!--          <div class="title">-->
+<!--            <img width="20" height="20"-->
+<!--                 alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
+<!--                 src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
+<!--                 style="border-radius: 50%;">&nbsp;-->
+<!--            <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>-->
+<!--          </div>-->
+<!--          <div class="wallet_type">-->
+<!--            <div class="btn">Chrome Extension</div>-->
+<!--            <div class="btn" @click="showDialog('mobileApp')">Mobile App</div>-->
+<!--          </div>-->
+<!--          <div style="font-size:12px;padding:4px 0;">or</div>-->
           <div class="other_btns">
 
             <div class="btn" v-for="connector in connectors"
