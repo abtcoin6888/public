@@ -11,12 +11,14 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@metamask/sdk": "^0.32.1",
     "caver-js": "^1.12.2",
     "pinia": "^3.0.1",
     "swiper": "^10.0.0",
     "thirdweb": "^5.90.3",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "web3": "^4.16.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

