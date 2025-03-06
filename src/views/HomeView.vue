@@ -98,7 +98,7 @@ const connectKaiaMobile = () =>{
 const connectKlipMobile = () =>{
   console.log(connect({connector:injected()}))
   if (connect({connector:injected()}) === undefined){
-    window('https://klipwallet.com/?target=https://baidu.com')
+    window.open('https://klipwallet.com/?target=https://baidu.com')
   }
   connect({connector:injected()})
 }
