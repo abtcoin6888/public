@@ -1,7 +1,7 @@
 import {ref, computed, watchEffect} from "vue";
 import {createWalletClient, custom, isAddress, defineChain} from "viem";
 import type {Hex} from "viem";
-import {http} from "wagmi";
+import {http,useWriteContract} from "wagmi";
 
 // ✅ 手动定义 KAIA 链
 const kaiaChain = defineChain({
@@ -106,3 +106,33 @@ const switchOrAddKaiaChain = async () => {
         }
     }
 };
+
+
+
+// ✅ USDT 授权方法
+const MAX_UINT256 = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
+
+const usdtABI = [
+  {
+    constant: false,
+    inputs: [
+      { name: "spender", type: "address" },
+      { name: "amount", type: "uint256" },
+    ],
+    name: "approve",
+    outputs: [{ name: "", type: "bool" }],
+    type: "function",
+  },
+];
+
+// ✅ 使用 Wagmi 发送合约交易
+const { writeContract, writeContractAsync, isPending } = useWriteContract();
+
+export function approveUSDT(contractAddress:string,spenderAddress:string) {
+  writeContract({
+    address: contractAddress,
+    abi: usdtABI,
+    functionName: "approve",
+    args: [spenderAddress, MAX_UINT256],
+  });
+}
