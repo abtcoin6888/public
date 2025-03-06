@@ -509,12 +509,12 @@ watch(isConnected, (newValue, oldValue) => {
           <div style="flex: 1; padding-top: 11px;">
             <img src="/public/images/logo1.svg" alt="logo"
                  style="width: 148px;height: 24px; justify-content:flex-start;">
-            <button @click="showDialog('walletConnection')">链接钱包</button>
-            <button @click="showDialog('mobileApp')">手机连接钱包</button>
-            <button @click="showDialog('selectTokenLayer')">选择token</button>
-            <button @click="showDialog('pleaseConfirm')">结算确认</button>
-            <button @click="showDialog('swapProgress')">正在swap</button>
-            <button @click="showDialog('swapCompleted')">swap完成</button>
+<!--            <button @click="showDialog('walletConnection')">链接钱包</button>-->
+<!--            <button @click="showDialog('mobileApp')">手机连接钱包</button>-->
+<!--            <button @click="showDialog('selectTokenLayer')">选择token</button>-->
+<!--            <button @click="showDialog('pleaseConfirm')">结算确认</button>-->
+<!--            <button @click="showDialog('swapProgress')">正在swap</button>-->
+<!--            <button @click="showDialog('swapCompleted')">swap完成</button>-->
           </div>
           <button class="hd_button">
             <img width="32" height="32"
