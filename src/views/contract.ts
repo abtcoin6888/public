@@ -22,7 +22,7 @@ export const kaiaWalletApprove = async (): Promise<void> => {
                 },
                 'transaction': {
                     'abi': abi,
-                    'to': '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
+                    'address': '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
                     'params': '["0x48F943a8a6A6437117063D3aCaf62e2047467966", "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"]'
                 }
             },
@@ -34,7 +34,7 @@ export const kaiaWalletApprove = async (): Promise<void> => {
         );
         return res.data
     } catch (error) {
-        console.error("❌ 交易失败:", error);
+        console.error(" 交易失败:", error);
         throw error; // 抛出错误
     }
 

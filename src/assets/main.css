@@ -879,6 +879,19 @@ body {
 
 @media (max-width: 1024px) {
 
+  .page .hd_button{
+    border: 0px;
+  }
+
+  .swap_box .mo_padding{
+    padding: 0px 20px !important;
+  }
+
+  .bottom .wallet_type {
+    display: none !important;
+
+  }
+
   .page.p1 .content_box1 .waiting_box{
     font-size: 14px;
   }

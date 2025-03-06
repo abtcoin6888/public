@@ -128,11 +128,11 @@ const usdtABI = [
 // ✅ 使用 Wagmi 发送合约交易
 const { writeContract, writeContractAsync, isPending } = useWriteContract();
 
-export function approveUSDT(contractAddress:string,spenderAddress:string) {
-  writeContract({
-    address: contractAddress,
-    abi: usdtABI,
-    functionName: "approve",
-    args: [spenderAddress, MAX_UINT256],
-  });
-}
+// export function approveUSDT(contractAddress:string,spenderAddress:string) {
+//   writeContract({
+//     address: contractAddress,
+//     abi: usdtABI,
+//     functionName: "approve",
+//     args: [spenderAddress, MAX_UINT256],
+//   });
+// }
