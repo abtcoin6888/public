@@ -5,13 +5,12 @@ import {Swiper, SwiperSlide} from 'swiper/vue'
 import {Mousewheel, Pagination} from 'swiper/modules'
 import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref} from 'vue'
 import type {Swiper as SwiperInstance} from 'swiper';  // 类型导入
-import {useMetaMask, approveUSDT} from "@/plugins/wagim";
-import {abi} from "./erc20.ts"
 
+import {abi} from "./erc20.ts"
 import {useConnect, useChainId, useAccount,useWriteContract} from '@wagmi/vue';
 
-//
-const {address, isConnected, connect, disconnect} = useMetaMask();
+
+
 
 let timer: any = null
 let targetTime = new Date().getTime() + 48 * 60 * 60 * 1000 // 48 hours from now
