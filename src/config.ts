@@ -11,6 +11,7 @@ export const config = createConfig({
     walletConnect({ projectId }),
     metaMask(),
 
+
   ],
     transports: {
 
