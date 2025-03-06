@@ -43,7 +43,7 @@ export const kaiaWalletApprove = async (): Promise<void> => {
     if (res.data.request_key) {
       const url = `kaikas://wallet/api?request_key=${res.data.request_key}`;
       console.log("🔗 打开 Kaikas 钱包 URL:", url);
-      window.open(url);
+      window.location.href = url;
     } else {
       console.error("❌ 交易失败: 未返回 request_key");
     }
