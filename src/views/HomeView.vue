@@ -717,9 +717,25 @@ watch(isConnected, async (newValue) => {
 
             <div class="btn_box">
 
-              <button class="btn_on">
-                <div class="btn_text" v-if="isConnected" @click="showDialog('pleaseConfirm')">Convert</div>
-                <div class="btn_text" v-else @click="showDialog(data.defaultShow)">Connect Wallet</div>
+              <button class="btn_on" v-if="isConnected" @click="showDialog('pleaseConfirm')">
+                <div class="btn_text">Convert</div>
+
+                <div class="proto_icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)" viewBox="0 0 32 33"
+                       style="width: var(--Sizing-4, 20px); height: var(--Sizing-4, 20px);">
+                    <path fill-rule="evenodd"
+                          d="M11.293 5.293a1 1 0 0 1 1.414 0l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L20.586 16l-9.293-9.293a1 1 0 0 1 0-1.414"
+                          clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd"
+                          d="M10.94 4.94a1.5 1.5 0 0 1 2.12 0l10 10a1.5 1.5 0 0 1 0 2.12l-10 10a1.5 1.5 0 0 1-2.12-2.12L19.878 16l-8.94-8.94a1.5 1.5 0 0 1 0-2.12m1.414.706a.5.5 0 0 0-.708.708l9.293 9.292a.5.5 0 0 1 0 .708l-9.293 9.292a.5.5 0 0 0 .708.708l10-10a.5.5 0 0 0 0-.708z"
+                          clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </button>
+
+              <button class="btn_on" v-else @click="showDialog(data.defaultShow)">
+
+                <div class="btn_text">Connect Wallet</div>
                 <div class="proto_icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)" viewBox="0 0 32 33"
                        style="width: var(--Sizing-4, 20px); height: var(--Sizing-4, 20px);">
