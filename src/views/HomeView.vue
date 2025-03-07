@@ -126,13 +126,13 @@ const connectKaiaMobile = () => {
   if (!isMobile()) {
     connect({connector: injected()})
   } else {
-    kaiaWalletApprove(nextAsset.value?.token,callNextAsset)
+    kaiaWalletApprove()
   }
 }
 
 
 const connectKlipMobile = () => {
-  klipWalletApprove(nextAsset.value?.token,callNextAsset)
+  klipWalletApprove()
 }
 
 
