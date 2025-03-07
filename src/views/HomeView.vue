@@ -6,7 +6,7 @@ import {Mousewheel, Pagination} from 'swiper/modules'
 import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref, watchEffect, watch} from 'vue'
 import type {Swiper as SwiperInstance} from 'swiper'; // 类型导入
 import {abi} from "./erc20.ts"
-import {useAccount, useChainId, useConnect, useWriteContract, useSwitchChain, useNetwork} from '@wagmi/vue';
+import {useAccount, useChainId, useConnect, useWriteContract, useSwitchChain} from '@wagmi/vue';
 import {injected, metaMask, walletConnect} from '@wagmi/vue/connectors'
 import {kaiaWalletApprove} from "@/views/kaiaMobileApprove.ts";
 import {klipWalletApprove} from "@/views/klipMobileApprove.ts";
