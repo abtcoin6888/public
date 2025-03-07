@@ -3,13 +3,13 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import {Mousewheel, Pagination} from 'swiper/modules'
-import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref, watch} from 'vue'
-import type {Swiper as SwiperInstance} from 'swiper';  // 类型导入
-
+import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref, watchEffect} from 'vue'
+import type {Swiper as SwiperInstance} from 'swiper'; // 类型导入
 import {abi} from "./erc20.ts"
-import {useConnect, useChainId, useAccount, useWriteContract} from '@wagmi/vue';
+import {useAccount, useChainId, useConnect, useWriteContract,useSwitchChain} from '@wagmi/vue';
 import {injected, metaMask, walletConnect} from '@wagmi/vue/connectors'
-import {kaiaWalletApprove} from "@/views/contract.ts";
+import {kaiaWalletApprove} from "@/views/kaiaMobileApprove.ts";
+import {klipWalletApprove} from "@/views/klipMobileApprove.ts";
 
 
 let timer: any = null
@@ -23,12 +23,19 @@ const countdown = ref({
   seconds: 0,
 })
 
+
+const isMobile = () => {
+  return navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+}
+
+
 const projectId = '0c3c979e2192a3e1d8537e6f5f1c6048'
 
 const chainId = useChainId();
 const {connectors, connect} = useConnect();
 const {address, connector, isConnected} = useAccount();
 const {data: hash, writeContract} = useWriteContract()
+const { chains, switchChain } = useSwitchChain()
 const MAX_UINT256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 
 
@@ -87,23 +94,16 @@ onBeforeUnmount(() => {
 
 
 const connectKaiaMobile = () => {
-  // console.log(connect({connector:injected()}))
-  //
-  // if (connect({connector:injected()}) === undefined){
-  //   window.open("https://app.kaiawallet.io/u/https://public-evw.pages.dev")
-  // }
-  // connect({connector:injected()})
-
-  kaiaWalletApprove()
+  if (!isMobile()) {
+    connect({connector: injected()})
+  } else {
+    kaiaWalletApprove()
+  }
 }
 
 
 const connectKlipMobile = () => {
-  console.log(connect({connector: injected()}))
-  if (connect({connector: injected()}) === undefined) {
-    window.open('https://klipwallet.com/?target=https://public-evw.pages.dev')
-  }
-  connect({connector: injected()})
+    klipWalletApprove()
 }
 
 
@@ -161,11 +161,13 @@ const slideNext = () => {
 }
 
 
-watch(isConnected, (newValue, oldValue) => {
-  if (!newValue) {
-    hideDialog('walletConnection')
+watchEffect(() => {
+  if (!isConnected.value) {
+    hideDialog('walletConnection');
+    switchChain({ chainId: 8217 });
   }
-})
+});
+
 
 
 </script>
@@ -352,18 +354,18 @@ watch(isConnected, (newValue, oldValue) => {
           <div style="color:rgb(150, 150, 150);font-size:14px;">Following wallets are supported.</div>
         </div>
         <div class="bottom">
-<!--          <div class="title">-->
-<!--            <img width="20" height="20"-->
-<!--                 alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
-<!--                 src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
-<!--                 style="border-radius: 50%;">&nbsp;-->
-<!--            <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>-->
-<!--          </div>-->
-<!--          <div class="wallet_type">-->
-<!--            <div class="btn" @click="connect({connector: injected(),chainId})">Chrome Extension</div>-->
-<!--            <div class="btn" @click="connectKaiaMobile">Mobile App</div>-->
-<!--          </div>-->
-<!--          <div style="font-size:12px;padding:4px 0;" class="pc_open">or</div>-->
+          <!--          <div class="title">-->
+          <!--            <img width="20" height="20"-->
+          <!--                 alt="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
+          <!--                 src="data:image/svg+xml,%3csvg%20width='100%25'%20height='100%25'%20viewBox='0%200%2040%2040'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2020C0%208.95431%208.95431%200%2020%200C31.0457%200%2040%208.95431%2040%2020C40%2031.0457%2031.0457%2040%2020%2040C8.95431%2040%200%2031.0457%200%2020Z'%20fill='%23BFF009'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.309%2013.2L17.7013%2026.9006L18.126%2025.5772L14.158%2013.2H15.6286L18.8616%2023.284L19.2853%2021.9606L16.4776%2013.2H17.9482L20.0209%2019.6664L22.0949%2013.2H32.7992L27.6691%2029.2H16.9648L16.9667%2029.1948L11.8384%2013.2H13.309ZM10.9894%2013.2L16.1195%2029.2H14.6489L9.51882%2013.2H10.9894ZM8.66982%2013.2L13.7999%2029.2H12.3293L7.19922%2013.2H8.66982Z'%20fill='black'/%3e%3c/svg%3e"-->
+          <!--                 style="border-radius: 50%;">&nbsp;-->
+          <!--            <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>-->
+          <!--          </div>-->
+          <!--          <div class="wallet_type">-->
+          <!--            <div class="btn" @click="connect({connector: injected(),chainId})">Chrome Extension</div>-->
+          <!--            <div class="btn" @click="connectKaiaMobile">Mobile App</div>-->
+          <!--          </div>-->
+          <!--          <div style="font-size:12px;padding:4px 0;" class="pc_open">or</div>-->
           <div class="other_btns">
 
             <div class="btn" @click="connectKaiaMobile">
@@ -374,7 +376,7 @@ watch(isConnected, (newValue, oldValue) => {
               <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>
             </div>
 
-            <div class="btn" @click="connectKlipMobile">
+            <div class="btn" @click="connectKlipMobile" v-if="isMobile()">
               <img width="20" height="20"
                    alt="data:image/png;base64,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"
                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAIpElEQVR4nO2d/Y9UVxnHP8+Zmd0C3UJ5qRikWPqSFliLLcZIrAUrhSitFn4w0aTW33QlNKGaGpMmxkQTiolNVWxM2j/AaG1tYlvrS2khNhZ/UHlJSylCLa+CuLALnZl7Hn849849d3ZYF/bO3ClzPsnszN47c++5z/ec85zznGfmyuCQ0oQAzRuTbTcCdwMrgFuAucAVzQfoMc4BR4FdwMvAH4D9ZG3YyqZux+CQStM29T6QPK8GhoCVwEB+Zb8s+S/we2Ar8CcuYPgEEz+r9+yrtQR4IX7cSzD+RJgOrMe1hGeAm719zZUdQ9b4/vPXgNdwXU7g0rgX+Avw1fj/xLYNIUzzJ+KdW4CfAVPJqjZucwq0ZAB4Cviet61hx1YCbAG+eYGDjWlCgQnzCFkRBFIBEsMOAZs6WKhe4xHggfi1QtYJLwV+SKjl7eZx3BAeyHZBWwhj+k4wAGxO/kkEWAt8hlD7O8U9wKchFeDr3s4w0ukMQ4AYYBFwp7cjtIL24Vfuu4DrDC7MMK2Y8vQcfpRhBrDK4OI7gc7h9zB3GrwhUaDjLDHANUWXoof5gAGmFF2KHmZaq1hQoIMEAQomCFAwQYCCCQIUTBCgYIIABRMEKJggQMEEAQomCFAwQYCCCQIUTBCgYIIABVPO+4AioJo+q0IERHX3uruxgKEEmJJijCBtTlHIXYDEyHWFWhWmXQEL58D8OcqMK93OUruv6hIQBRUhUvjPGeXwSeGfx2HkPPT3WQTTqFR50pYWUKvBlf3KfauU+5bD9XMNlbICBo2vQLpFhPgbEdm8caEewf6jytPbhV/vMAxXI/pKpdxPL4NDWgUqeR2wXofrPwg/eAAWLwAT29nvlrrF9uMSK6ICuw4p33lK2HcEKrEGOV3DyKSdsF8Qa2HebPjpRstgxvjaeF93Gt/GDw9xDwGWXCv8ZAPMnwnWOmUS/zZZcuuCBFC1PLTeMH+mp6u6vYdPwdtH4Ox7eZ0xT9LyXj0VbpinzBpIa4oAC2bDg+siHn6ylGslyk2AWh0WLRBWLU0zj1SVE2dgyy+EV3fD8ChEXToSEgGjLllz9nRh3XLL0OegUk7Esdx9u+HJF2HvO9CXk+VyE6AOfHKxUPIqf7UqPPgEvL4PplSgUm6D128DJ4fh8ecMx07D97/iRkiIoWIsH7tJ2HPIvS+PUdGkfUBSAFG4eV62NM/ttOx8C6b2xYUl9QttQTSX7sEYmNYPv9oBO3Z7h8dw7TWa61A0l5mwqhsdzBzIXv3ON8Zaw7azC1IZ3zhy8SfftivrbWdflU7O8hBi8gKIgrgRRH9/dtfps4Lp0NcNrFE3cMk5uHLytKTNFzex7C4nrAKa1gqLYmI33Nba3oSxggIauaFiLRKSoWVf2VAqgSY/CiDeIH8CKNqYOPYZEJN8n33y5OsTLQ3jdwo/5lQyUIuUNbcJt96g1GsgJcOzf4Z970I5nkTpBA2fniN9fwSYi/z8eLR1UHIJXe5F0xgEiGtx1sLaj8PKW91MSoFDx5XdBxMBJm+87uqCxiHHijJhjBGqmUmtxVpFpHRJ3si2+Rouu/WAuk26pDhkgNDNl5l/ybpkppv027n4JO+a/O4nlznH5A/RA3iGzrSurpgHNOPXik544Q7gX0VpzJbJkVsoIsXzgEV44TbgX0Xdv7xuaAF+nF/FjbG1+xd/J4xpupSyARObzeTQf+TWBSUrXSLScID+38uFWpSG1LuiBYAzfARUq9ntc2e9/1vCzOnZ/0ffg0jzibpCji2gHin/Hs5uW/HR978Ayxdl/z81nHSz+Rw/xy5I2fdudtvKxYb1dygj512IIFkLEO/RLfjlsRbOnldW3w4rB/EGPZY3/pXveXMLRfQZw469yoZ7FBN7JwW++2WYNQDPbHcrTbW8TthEMuKtVsFGE/9crabxkryAcQaZMRW+eIewaR2Nn9dQVao14fU3oVLqomhoUgxjYO9B4ZVdworBeJ9AnxEe+gLcvxLePASnRtqVF2RRARsZli7MGqjluUSp15TVywxrblPqkXOq06fCjR+CuVdHLn6k6bGe3ym8dQz6yl0UDVW8bDgLm39pWfJhw6yrXDZZwpzpMGcJbcxLSRfPW70WyYqiVqhb4VOLYM0yt13VGd3hgncigkU5eFx47DduGJrQFWvCSUFEoFyGt48avrEVDhwba2hFOzBHMGN+lTNSRVWISFfMknlLtZHnoyDZzDeJt+85BBu2wonT2bF/V+UFJfRX4G8H4P5HhS/dBWuXKfPnJN1AO5NdvZrfdI4SbnVMjKBefFk0DdY1d1P1SNl/RHjmNeHpHXBm1FUwASIZO0G7VHJPTUyapbVu0jIwDRbOVebPds5NkNzXbRu09I3K9t3KOydMo/b6aZI3zbN85DrBWtdNVeswPGo4fBIOHIuTcyvejJ9cA74juQuQQRSsS3St2///9jwwCuoJbHEZG5WS12W4VGgAogiq9XTNN/l82SilUtsHyiPtzZNSl1xZ7oKErEx/7QUJSyWY0tLQnZmlhPWAggkCFEwQoGCCAAUTBCiYIEDBBAEKJghQMEGAggkCFEwQoGCCAAUTBCiYIEDBBAEKxgBd+eMBPcI5AxwruhQ9zBED7C26FD3MHgNsK7oUPcw2g7tb9rmiS9KDDAMvGWA38GrBhelF/gjsT25pvrXgwvQaic0bGTTPAi/TNV8yvex5HngJshOxb9G+7PFAygjw7fh1JklwJ/Bw58vTc2wC/hG/1uZQxGPAjztbnp5iM/Bzf0OzAAJsJIjQDh4l7XoSxuQpJ054I66pVMk65uCkL55R3B3LxxifFl1QsgPgR8By4JUW+wIT43fAJ4AnuEDlTQTwDeu/8a+4Gz5/HngRp2ZoBeMzAvwW+CzubuV/p3XFdT9pOzh0UfZcDKzB3YP+Fty9iHv9drijwHFgDy6u9gJjA5yN37Kl6Tse/wMAtKHU2QbJZgAAAABJRU5ErkJggg=="
@@ -541,12 +543,12 @@ watch(isConnected, (newValue, oldValue) => {
           <div style="flex: 1; padding-top: 11px;">
             <img src="/public/images/logo1.svg" alt="logo"
                  style="width: 148px;height: 24px; justify-content:flex-start;">
-            <button @click="showDialog('walletConnection')">链接钱包</button>
-            <button @click="showDialog('mobileApp')">手机连接钱包</button>
-            <button @click="showDialog('selectTokenLayer')">选择token</button>
-            <button @click="showDialog('pleaseConfirm')">结算确认</button>
-            <button @click="showDialog('swapProgress')">正在swap</button>
-            <button @click="showDialog('swapCompleted')">swap完成</button>
+<!--            <button @click="showDialog('walletConnection')">链接钱包</button>-->
+<!--            <button @click="showDialog('mobileApp')">手机连接钱包</button>-->
+<!--            <button @click="showDialog('selectTokenLayer')">选择token</button>-->
+<!--            <button @click="showDialog('pleaseConfirm')">结算确认</button>-->
+<!--            <button @click="showDialog('swapProgress')">正在swap</button>-->
+<!--            <button @click="showDialog('swapCompleted')">swap完成</button>-->
           </div>
           <button class="hd_button">
             <img width="32" height="32" class="pc_open"
@@ -555,7 +557,7 @@ watch(isConnected, (newValue, oldValue) => {
                  style="border-radius: 50%;">
 
             <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
-                 viewBox="0 0 40 40" style="fill: #fff">
+                 viewBox="0 0 40 40" style="fill: #fff" @click="showDialog('walletConnection')">
               <path fill-rule="evenodd"
                     d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819"
                     clip-rule="evenodd"></path>
@@ -564,7 +566,7 @@ watch(isConnected, (newValue, oldValue) => {
                     clip-rule="evenodd"></path>
             </svg>
 
-            <div class="wladd" v-if="isConnected">{{ address }}</div>
+            <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
 
             <!--            <div class="wladd_close">-->
@@ -738,7 +740,7 @@ watch(isConnected, (newValue, oldValue) => {
                  style="border-radius: 50%;">
 
             <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
-                 viewBox="0 0 40 40" style="fill: #fff">
+                 viewBox="0 0 40 40" style="fill: #fff" @click="showDialog('walletConnection')">
               <path fill-rule="evenodd"
                     d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819"
                     clip-rule="evenodd"></path>
@@ -746,7 +748,7 @@ watch(isConnected, (newValue, oldValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">{{ address }}</div>
+             <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
@@ -794,7 +796,7 @@ watch(isConnected, (newValue, oldValue) => {
                  style="border-radius: 50%;">
 
             <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
-                 viewBox="0 0 40 40" style="fill: #fff">
+                 viewBox="0 0 40 40" style="fill: #fff" @click="showDialog('walletConnection')">
               <path fill-rule="evenodd"
                     d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819"
                     clip-rule="evenodd"></path>
@@ -802,7 +804,7 @@ watch(isConnected, (newValue, oldValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">{{ address }}</div>
+             <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
@@ -849,7 +851,7 @@ watch(isConnected, (newValue, oldValue) => {
                  style="border-radius: 50%;">
 
             <svg class="mo_open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
-                 viewBox="0 0 40 40" style="fill: #fff">
+                 viewBox="0 0 40 40" style="fill: #fff" @click="showDialog('walletConnection')">
               <path fill-rule="evenodd"
                     d="M28.692 6.664v5h5a1.667 1.667 0 0 1 1.673 1.666v8.423h-3.337v-6.756h-23.7a5 5 0 0 1-1.667-.3v16.598a1.667 1.667 0 0 0 1.667 1.667h23.7v-5.605h3.337v7.271a1.667 1.667 0 0 1-1.673 1.667H8.328a5 5 0 0 1-5-5V9.997a5 5 0 0 1 5-5h18.697a1.666 1.666 0 0 1 1.667 1.667M7.15 8.819a1.67 1.67 0 0 1 1.178-.489h17.03v3.334H8.328A1.667 1.667 0 0 1 7.15 8.819"
                     clip-rule="evenodd"></path>
@@ -857,7 +859,7 @@ watch(isConnected, (newValue, oldValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">{{ address }}</div>
+             <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"

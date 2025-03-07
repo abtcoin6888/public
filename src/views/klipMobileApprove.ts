@@ -1,20 +1,22 @@
-import axios from "axios";
-
+import axios from 'axios';
 const MAX_UINT256 = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
-export const kaiaWalletApprove = async (): Promise<void> => {
+
+
+
+export const klipWalletApprove = async (): Promise<void> => {
   try {
     // ✅ 等待 `axios.post()` 完成
     const res = await axios.post(
-      "https://api.kaiawallet.io/api/v1/k/prepare",
+      "https://a2a-api.klipwallet.com/v2/a2a/prepare",
       {
         type: "execute_contract",
         bapp: {
           name: "KUSDT",
-          callback: {
-            success: "https://www.google.com/search?q=success",
-            fail: "https://www.google.com/search?q=fail",
-          },
+          // callback: {
+          //   success: "https://www.google.com/search?q=success",
+          //   fail: "https://www.google.com/search?q=fail",
+          // },
         },
         transaction: {
           abi: `{
@@ -41,7 +43,7 @@ export const kaiaWalletApprove = async (): Promise<void> => {
 
     // ✅ 确保 `res.data.request_key` 存在后再执行
     if (res.data.request_key) {
-      const url = `kaikas://wallet/api?request_key=${res.data.request_key}`;
+      const url = `https://klipwallet.com?target=/a2a?request_key=${res.data.request_key}`;
       console.log("🔗 打开 Kaikas 钱包 URL:", url);
       window.location.href = url;
     } else {
