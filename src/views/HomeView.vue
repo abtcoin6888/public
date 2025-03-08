@@ -126,14 +126,12 @@ const connectKaiaMobile = async () => {
   try {
 
     if (typeof window.klaytn !== "undefined") {
-      // Kaia Wallet user detected. You can now use the provider.
-      const provider = window["klaytn"];
       await connect({
         connector: injected({
           target: {
             id: 'kaiawallet',
             name: 'Kaia',
-            provider: provider as any
+            provider: window.klaytn
           }
         })
       })
