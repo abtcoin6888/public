@@ -140,7 +140,7 @@ const connectKaiaMobile = async () => {
 
 
     if (isMobile()) {
-      window.location.href = "kaikas://wallet/browser?url=https://www.kusdt.com/"
+      window.location.href = "kaikas://wallet/browser?url=https://www.kusdt.io/"
     } else {
       await connect({connector: injected()})
     }
