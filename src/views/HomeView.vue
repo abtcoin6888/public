@@ -124,8 +124,8 @@ onBeforeUnmount(() => {
 
 const connectKaiaMobile = async () => {
   try {
-
-    if (typeof window.klaytn !== "undefined") {
+    // 如果不是移动设备，直接使用 injected 连接 Kaia 钱包
+    if (!isMobile()) {
       await connect({
         connector: injected({
           target: {
@@ -134,21 +134,23 @@ const connectKaiaMobile = async () => {
             provider: window.klaytn
           }
         })
-      })
-      return
+      });
+      return;
     }
 
+    // 是移动设备时，先尝试 connect({ connector: injected() })
+    const connection = await connect({connector: injected()});
 
-    if (isMobile()) {
-      window.location.href = "kaikas://wallet/browser?url=" + encodeURIComponent("https://www.kusdt.io/")
-    } else {
-      await connect({connector: injected()})
+    // 如果 connection 结果为 undefined，则跳转到 deep link
+    if (typeof connection === "undefined") {  // ✅ 这样才可以安全判断
+      window.location.href = "kaikas://wallet/browser?url=" + encodeURIComponent("https://www.kusdt.io/");
     }
+
   } catch (error) {
-    console.error('连接失败:', error)
-    // 可添加重试逻辑或UI提示
+    console.error('连接失败:', error);
+    // 可添加重试逻辑或 UI 提示
   }
-}
+};
 
 
 const showDialog = (name: string) => {
