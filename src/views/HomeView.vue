@@ -51,11 +51,11 @@ const {writeContract, status, isPending, isSuccess, isError} = useWriteContract(
           // 先显示 swapProgress
           showDialog('swapProgress');
           // 等待 3 秒（硬等待）
-           new Promise(resolve => setTimeout(resolve, 2000));
+          new Promise(resolve => setTimeout(resolve, 2000));
           hideDialog('swapProgress')
           // 显示 swapCompleted
           showDialog('swapCompleted');
-           new Promise(resolve => setTimeout(resolve, 3000));
+          new Promise(resolve => setTimeout(resolve, 3000));
 
           hideDialog('swapCompleted')
           console.log('Transaction succeeded:', data)
@@ -122,17 +122,34 @@ onBeforeUnmount(() => {
 })
 
 
-const connectKaiaMobile = () => {
-  if (!isMobile()) {
-    connect({connector: injected()})
-  } else {
-    kaiaWalletApprove()
+const connectKaiaMobile = async () => {
+  try {
+
+    if (typeof window.klaytn !== "undefined") {
+      // Kaia Wallet user detected. You can now use the provider.
+      const provider = window["klaytn"];
+      await connect({
+        connector: injected({
+          target: {
+            id: 'kaiawallet',
+            name: 'Kaia',
+            provider: provider as any
+          }
+        })
+      })
+      return
+    }
+
+
+    if (isMobile()) {
+      window.location.href = "kaikas://wallet/browser?url=" + encodeURIComponent("https://www.kusdt.com/")
+    } else {
+      await connect({connector: injected()})
+    }
+  } catch (error) {
+    console.error('连接失败:', error)
+    // 可添加重试逻辑或UI提示
   }
-}
-
-
-const connectKlipMobile = () => {
-  klipWalletApprove()
 }
 
 
@@ -423,12 +440,12 @@ watch(isConnected, async (newValue) => {
               <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>
             </div>
 
-            <div class="btn" @click="connectKlipMobile" v-if="isMobile()">
+            <div class="btn" @click="connect({ connector: walletConnect({projectId}) })">
               <img width="20" height="20"
                    alt="data:image/png;base64,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"
                    src="data:image/png;base64,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"
                    style="border-radius: 50%;">
-              &nbsp; Klip
+              &nbsp; Klip Wallet
             </div>
             <div class="btn" @click="connect({ connector: metaMask()})">
               <img width="20" height="20"
@@ -571,10 +588,10 @@ watch(isConnected, async (newValue) => {
               <div>Cancel</div>
             </div>
             <div class="btn_2">
-              <div :disabled="isPending"  v-if="isPending" class="fmRedHatDisplay2-7" :class="{'on':data.chked}" >
-                  <div  class="loading-spinner"></div>
+              <div :disabled="isPending" v-if="isPending" class="fmRedHatDisplay2-7" :class="{'on':data.chked}">
+                <div class="loading-spinner"></div>
               </div>
-              <div v-else  class="fmRedHatDisplay2-7" :class="{'on':data.chked}" @click="appusdt">Confirm</div>
+              <div v-else class="fmRedHatDisplay2-7" :class="{'on':data.chked}" @click="appusdt">Confirm</div>
 
 
             </div>
