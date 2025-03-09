@@ -477,7 +477,7 @@ watch(isConnected, async (newValue) => {
                       d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                       clip-rule="evenodd"></path>
               </svg>
-              &nbsp; Instructions
+              &nbsp; Help Tips
             </div>
 
 
@@ -506,7 +506,7 @@ watch(isConnected, async (newValue) => {
                   </div>
 
                   <div style="text-align: center;font-weight: 600;margin-bottom:20px;">
-                    <div style="margin:0px 10px 10px 10px;color:#fff; font-size: 22px;">Instructions</div>
+                    <div style="margin:0px 10px 10px 10px;color:#fff; font-size: 22px;">Help Tips</div>
                     <div style="overflow-y: scroll; height: 500px;">
                       <!-- step_1 -->
                       <div style="color:#fff; font-size: 16px; font-weight: bold; color: #BFF009;">STEP 1</div>

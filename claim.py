@@ -1,13 +1,13 @@
 import requests
 import pandas as pd
 import json
-import time  # 添加请求间隔，防止 API 速率限制
+import time
+import os
 
 # CSV 文件路径
 csv_file = "token-holders.csv"
-
-# 读取 CSV 文件
-df = pd.read_csv(csv_file)
+success_file = "claim_success.csv"
+failure_file = "claim_failed.csv"
 
 # API URL
 url = "https://f9668c2b.engine-usw2.thirdweb.com/contract/8217/0xf76aF6f597C8C15Ae1e3dD8E0Aa146d97F616013/erc721/claim-to"
@@ -19,35 +19,75 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Content-Type': 'application/json',
     'Accept': '*/*',
-    'Host': 'f9668c2b.engine-usw2.thirdweb.com',
     'Connection': 'keep-alive'
 }
 
+# 如果 CSV 文件不存在，创建它并添加表头
+for file in [success_file, failure_file]:
+    if not os.path.exists(file):
+        pd.DataFrame(columns=["Address", "Status", "Response"]).to_csv(file, index=False)
 
-# 发送请求的同步函数
+
+# 发送请求的函数
 def send_request(address):
     payload = json.dumps({"receiver": address, "quantity": "1"})
+    print(f"📤 正在发送请求 -> Address: {address}")
     try:
         response = requests.post(url, headers=headers, data=payload, timeout=10)
-        print(f"Address: {address}, 状态码: {response.status_code}, 响应: {response.text}")
-        return response.status_code, response.text
-    except requests.exceptions.RequestException as e:
-        print(f"⚠️  请求失败: {address}, 错误: {e}")
-        return None, str(e)
+        status_code = response.status_code
+        response_text = response.text
+        print(f"✅ Address: {address}, 状态码: {status_code}, 响应: {response_text}")
+
+        result = {"Address": address, "Status": status_code, "Response": response_text}
+        df_result = pd.DataFrame([result])
+        if status_code == 200:
+            df_result.to_csv(success_file, mode='a', header=False, index=False, encoding="utf-8")
+            print(f"💾 成功记录已保存 -> {success_file}")
+        else:
+            df_result.to_csv(failure_file, mode='a', header=False, index=False, encoding="utf-8")
+            print(f"⚠️ 失败记录已保存 -> {failure_file}")
+    except Exception as e:
+        print(f"❌ 请求失败: {address}, 错误: {e}")
+        result = {"Address": address, "Status": "Failed", "Response": str(e)}
+        pd.DataFrame([result]).to_csv(failure_file, mode='a', header=False, index=False, encoding="utf-8")
+        print(f"⚠️ 失败记录已保存 -> {failure_file}")
 
 
-# 遍历 CSV 文件并发送请求
-results = []
-for index, row in df.iterrows():
-    address = row["Address"]
-    status, response = send_request(address)
-    results.append({"Address": address, "Status": status, "Response": response})
+# 处理请求的函数
+def process_addresses():
+    print("🔍 正在检查已处理的地址...")
+    sent_addresses = set()
+    try:
+        df_success = pd.read_csv(success_file)
+        df_failed = pd.read_csv(failure_file)
 
-    time.sleep(0.5)  # 添加 2 秒延迟，防止 API 速率限制（可调整）
+        print("📄 成功文件的列名:", df_success.columns)
+        print("📄 失败文件的列名:", df_failed.columns)
 
-# 结果保存到 CSV 文件
-output_file = "claim_results.csv"
-df_results = pd.DataFrame(results)
-df_results.to_csv(output_file, index=False, encoding="utf-8")
+        if "Address" in df_success.columns:
+            sent_addresses.update(df_success["Address"].dropna().tolist())
+        if "Address" in df_failed.columns:
+            sent_addresses.update(df_failed["Address"].dropna().tolist())
+        print(f"✅ 已处理的地址总数: {len(sent_addresses)}")
+    except FileNotFoundError:
+        print("⚠️  没有找到成功或失败记录文件，可能是首次运行。")
 
-print(f"✅ 处理完成，已保存结果到 {output_file}")
+    df = pd.read_csv(csv_file)
+
+    if "Address" not in df.columns:
+        raise KeyError("❌ CSV 文件里找不到 'Address' 列，请检查文件格式！")
+
+    address_list = [addr for addr in df["Address"].dropna().tolist() if addr not in sent_addresses]
+    print(f"📌 需要处理的地址数: {len(address_list)}")
+
+    for address in address_list:
+        send_request(address)
+        print("⏳ 等待 1 秒，防止速率过快...")
+        time.sleep(1)  # 1秒间隔，防止速率过快
+
+    print("🎉 所有请求已完成！")
+
+
+if __name__ == "__main__":
+    print("🚀 启动任务...")
+    process_addresses()
