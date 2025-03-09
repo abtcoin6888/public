@@ -4,7 +4,7 @@ import json
 import time  # 添加请求间隔，防止 API 速率限制
 
 # CSV 文件路径
-csv_file = "filtered_addresses.csv"
+csv_file = "token-holders.csv"
 
 # 读取 CSV 文件
 df = pd.read_csv(csv_file)

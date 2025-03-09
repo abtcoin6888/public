@@ -445,21 +445,21 @@ watch(isConnected, async (newValue) => {
               <span style="color:#fff;font-size:14px;font-weight: 700;">Kaia Wallet</span>
             </div>
 
-            <div class="btn" @click="connect({ connector: walletConnect({projectId}),chainId:8217 })">
+            <div class="btn" @click="connect({ connector: walletConnect({projectId}) })">
               <img width="20" height="20"
                    alt="data:image/png;base64,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"
                    src="data:image/png;base64,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"
                    style="border-radius: 50%;">
               &nbsp; Klip Wallet
             </div>
-            <div class="btn" @click="connect({ connector: metaMask(),chainId:8217})">
+            <div class="btn" @click="connect({ connector: metaMask(),chainId})">
               <img width="20" height="20"
                    alt="data:image/svg+xml,<svg width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 28 28&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>%0A<rect width=&quot;28&quot; height=&quot;28&quot; fill=&quot;white&quot;/>%0A<path d=&quot;M24.0891 3.1199L15.3446 9.61456L16.9617 5.7828L24.0891 3.1199Z&quot; fill=&quot;%23E2761B&quot; stroke=&quot;%23E2761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M3.90207 3.1199L12.5763 9.67608L11.0383 5.7828L3.90207 3.1199Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M20.9429 18.1745L18.6139 21.7426L23.597 23.1136L25.0295 18.2536L20.9429 18.1745Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M2.97929 18.2536L4.40301 23.1136L9.38607 21.7426L7.05713 18.1745L2.97929 18.2536Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.10483 12.1456L7.71626 14.2461L12.6642 14.4658L12.4884 9.14877L9.10483 12.1456Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.8864 12.1456L15.4589 9.08725L15.3446 14.4658L20.2837 14.2461L18.8864 12.1456Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L12.3566 20.2925L9.79033 18.2888L9.38606 21.7426Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.6347 20.2925L18.6139 21.7426L18.2009 18.2888L15.6347 20.2925Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.6139 21.7426L15.6347 20.2925L15.8719 22.2348L15.8456 23.0521L18.6139 21.7426Z&quot; fill=&quot;%23D7C1B3&quot; stroke=&quot;%23D7C1B3&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L12.1544 23.0521L12.1368 22.2348L12.3566 20.2925L9.38606 21.7426Z&quot; fill=&quot;%23D7C1B3&quot; stroke=&quot;%23D7C1B3&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M12.1984 17.0056L9.72002 16.2762L11.4689 15.4765L12.1984 17.0056Z&quot; fill=&quot;%23233447&quot; stroke=&quot;%23233447&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.7928 17.0056L16.5223 15.4765L18.28 16.2762L15.7928 17.0056Z&quot; fill=&quot;%23233447&quot; stroke=&quot;%23233447&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L9.80791 18.1745L7.05712 18.2536L9.38606 21.7426Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.1921 18.1745L18.6139 21.7426L20.9429 18.2536L18.1921 18.1745Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M20.2837 14.2461L15.3446 14.4658L15.8016 17.0057L16.5311 15.4765L18.2888 16.2762L20.2837 14.2461Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.72002 16.2762L11.4777 15.4765L12.1984 17.0057L12.6642 14.4658L7.71626 14.2461L9.72002 16.2762Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M7.71626 14.2461L9.79033 18.2888L9.72002 16.2762L7.71626 14.2461Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.2888 16.2762L18.2009 18.2888L20.2837 14.2461L18.2888 16.2762Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M12.6642 14.4658L12.1984 17.0057L12.7784 20.0025L12.9102 16.0565L12.6642 14.4658Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.3446 14.4658L15.1073 16.0477L15.2128 20.0025L15.8016 17.0057L15.3446 14.4658Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.8016 17.0056L15.2128 20.0025L15.6347 20.2925L18.2009 18.2888L18.2888 16.2762L15.8016 17.0056Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.72002 16.2762L9.79033 18.2888L12.3566 20.2925L12.7784 20.0025L12.1984 17.0056L9.72002 16.2762Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.8456 23.0521L15.8719 22.2348L15.6522 22.0414H12.339L12.1368 22.2348L12.1544 23.0521L9.38606 21.7426L10.3528 22.5336L12.3126 23.8958H15.6786L17.6472 22.5336L18.6139 21.7426L15.8456 23.0521Z&quot; fill=&quot;%23C0AD9E&quot; stroke=&quot;%23C0AD9E&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.6347 20.2925L15.2128 20.0025H12.7784L12.3566 20.2925L12.1368 22.2348L12.339 22.0414H15.6522L15.8719 22.2348L15.6347 20.2925Z&quot; fill=&quot;%23161616&quot; stroke=&quot;%23161616&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M24.4583 10.0364L25.2053 6.45072L24.0891 3.1199L15.6347 9.39485L18.8864 12.1456L23.4827 13.4903L24.5022 12.3038L24.0628 11.9874L24.7658 11.3459L24.221 10.924L24.924 10.3879L24.4583 10.0364Z&quot; fill=&quot;%23763D16&quot; stroke=&quot;%23763D16&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M2.79472 6.45072L3.54174 10.0364L3.06717 10.3879L3.77024 10.924L3.23415 11.3459L3.93722 11.9874L3.4978 12.3038L4.50847 13.4903L9.10483 12.1456L12.3566 9.39485L3.90207 3.1199L2.79472 6.45072Z&quot; fill=&quot;%23763D16&quot; stroke=&quot;%23763D16&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M23.4827 13.4903L18.8864 12.1456L20.2837 14.2461L18.2009 18.2888L20.9429 18.2536H25.0295L23.4827 13.4903Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.10484 12.1456L4.50848 13.4903L2.97929 18.2536H7.05713L9.79033 18.2888L7.71626 14.2461L9.10484 12.1456Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.3446 14.4658L15.6347 9.39485L16.9705 5.7828H11.0383L12.3566 9.39485L12.6642 14.4658L12.7696 16.0653L12.7784 20.0025H15.2128L15.2304 16.0653L15.3446 14.4658Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A</svg>%0A"
                    src="data:image/svg+xml,<svg width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 28 28&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>%0A<rect width=&quot;28&quot; height=&quot;28&quot; fill=&quot;white&quot;/>%0A<path d=&quot;M24.0891 3.1199L15.3446 9.61456L16.9617 5.7828L24.0891 3.1199Z&quot; fill=&quot;%23E2761B&quot; stroke=&quot;%23E2761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M3.90207 3.1199L12.5763 9.67608L11.0383 5.7828L3.90207 3.1199Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M20.9429 18.1745L18.6139 21.7426L23.597 23.1136L25.0295 18.2536L20.9429 18.1745Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M2.97929 18.2536L4.40301 23.1136L9.38607 21.7426L7.05713 18.1745L2.97929 18.2536Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.10483 12.1456L7.71626 14.2461L12.6642 14.4658L12.4884 9.14877L9.10483 12.1456Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.8864 12.1456L15.4589 9.08725L15.3446 14.4658L20.2837 14.2461L18.8864 12.1456Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L12.3566 20.2925L9.79033 18.2888L9.38606 21.7426Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.6347 20.2925L18.6139 21.7426L18.2009 18.2888L15.6347 20.2925Z&quot; fill=&quot;%23E4761B&quot; stroke=&quot;%23E4761B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.6139 21.7426L15.6347 20.2925L15.8719 22.2348L15.8456 23.0521L18.6139 21.7426Z&quot; fill=&quot;%23D7C1B3&quot; stroke=&quot;%23D7C1B3&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L12.1544 23.0521L12.1368 22.2348L12.3566 20.2925L9.38606 21.7426Z&quot; fill=&quot;%23D7C1B3&quot; stroke=&quot;%23D7C1B3&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M12.1984 17.0056L9.72002 16.2762L11.4689 15.4765L12.1984 17.0056Z&quot; fill=&quot;%23233447&quot; stroke=&quot;%23233447&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.7928 17.0056L16.5223 15.4765L18.28 16.2762L15.7928 17.0056Z&quot; fill=&quot;%23233447&quot; stroke=&quot;%23233447&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.38606 21.7426L9.80791 18.1745L7.05712 18.2536L9.38606 21.7426Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.1921 18.1745L18.6139 21.7426L20.9429 18.2536L18.1921 18.1745Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M20.2837 14.2461L15.3446 14.4658L15.8016 17.0057L16.5311 15.4765L18.2888 16.2762L20.2837 14.2461Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.72002 16.2762L11.4777 15.4765L12.1984 17.0057L12.6642 14.4658L7.71626 14.2461L9.72002 16.2762Z&quot; fill=&quot;%23CD6116&quot; stroke=&quot;%23CD6116&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M7.71626 14.2461L9.79033 18.2888L9.72002 16.2762L7.71626 14.2461Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M18.2888 16.2762L18.2009 18.2888L20.2837 14.2461L18.2888 16.2762Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M12.6642 14.4658L12.1984 17.0057L12.7784 20.0025L12.9102 16.0565L12.6642 14.4658Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.3446 14.4658L15.1073 16.0477L15.2128 20.0025L15.8016 17.0057L15.3446 14.4658Z&quot; fill=&quot;%23E4751F&quot; stroke=&quot;%23E4751F&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.8016 17.0056L15.2128 20.0025L15.6347 20.2925L18.2009 18.2888L18.2888 16.2762L15.8016 17.0056Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.72002 16.2762L9.79033 18.2888L12.3566 20.2925L12.7784 20.0025L12.1984 17.0056L9.72002 16.2762Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.8456 23.0521L15.8719 22.2348L15.6522 22.0414H12.339L12.1368 22.2348L12.1544 23.0521L9.38606 21.7426L10.3528 22.5336L12.3126 23.8958H15.6786L17.6472 22.5336L18.6139 21.7426L15.8456 23.0521Z&quot; fill=&quot;%23C0AD9E&quot; stroke=&quot;%23C0AD9E&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.6347 20.2925L15.2128 20.0025H12.7784L12.3566 20.2925L12.1368 22.2348L12.339 22.0414H15.6522L15.8719 22.2348L15.6347 20.2925Z&quot; fill=&quot;%23161616&quot; stroke=&quot;%23161616&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M24.4583 10.0364L25.2053 6.45072L24.0891 3.1199L15.6347 9.39485L18.8864 12.1456L23.4827 13.4903L24.5022 12.3038L24.0628 11.9874L24.7658 11.3459L24.221 10.924L24.924 10.3879L24.4583 10.0364Z&quot; fill=&quot;%23763D16&quot; stroke=&quot;%23763D16&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M2.79472 6.45072L3.54174 10.0364L3.06717 10.3879L3.77024 10.924L3.23415 11.3459L3.93722 11.9874L3.4978 12.3038L4.50847 13.4903L9.10483 12.1456L12.3566 9.39485L3.90207 3.1199L2.79472 6.45072Z&quot; fill=&quot;%23763D16&quot; stroke=&quot;%23763D16&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M23.4827 13.4903L18.8864 12.1456L20.2837 14.2461L18.2009 18.2888L20.9429 18.2536H25.0295L23.4827 13.4903Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M9.10484 12.1456L4.50848 13.4903L2.97929 18.2536H7.05713L9.79033 18.2888L7.71626 14.2461L9.10484 12.1456Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A<path d=&quot;M15.3446 14.4658L15.6347 9.39485L16.9705 5.7828H11.0383L12.3566 9.39485L12.6642 14.4658L12.7696 16.0653L12.7784 20.0025H15.2128L15.2304 16.0653L15.3446 14.4658Z&quot; fill=&quot;%23F6851B&quot; stroke=&quot;%23F6851B&quot; stroke-width=&quot;0.0878845&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>%0A</svg>%0A"
                    style="border-radius: 50%;">
               &nbsp; Metamask
             </div>
-            <div class="btn" @click="connect({ connector: walletConnect({projectId}),chainId:8217 })">
+            <div class="btn" @click="connect({ connector: walletConnect({projectId}) })">
               <img width="20" height="20" class="iekbcc0 ju367v2m ju367v8p ju367v9f" aria-hidden="true"
                    src="data:image/svg+xml,<svg width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 28 28&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>%0A<rect width=&quot;28&quot; height=&quot;28&quot; fill=&quot;%233B99FC&quot;/>%0A<path d=&quot;M8.38969 10.3739C11.4882 7.27538 16.5118 7.27538 19.6103 10.3739L19.9832 10.7468C20.1382 10.9017 20.1382 11.1529 19.9832 11.3078L18.7076 12.5835C18.6301 12.6609 18.5045 12.6609 18.4271 12.5835L17.9139 12.0703C15.7523 9.9087 12.2477 9.9087 10.0861 12.0703L9.53655 12.6198C9.45909 12.6973 9.3335 12.6973 9.25604 12.6198L7.98039 11.3442C7.82547 11.1893 7.82547 10.9381 7.98039 10.7832L8.38969 10.3739ZM22.2485 13.012L23.3838 14.1474C23.5387 14.3023 23.5387 14.5535 23.3838 14.7084L18.2645 19.8277C18.1096 19.9827 17.8584 19.9827 17.7035 19.8277C17.7035 19.8277 17.7035 19.8277 17.7035 19.8277L14.0702 16.1944C14.0314 16.1557 13.9686 16.1557 13.9299 16.1944C13.9299 16.1944 13.9299 16.1944 13.9299 16.1944L10.2966 19.8277C10.1417 19.9827 9.89053 19.9827 9.73561 19.8278C9.7356 19.8278 9.7356 19.8277 9.7356 19.8277L4.61619 14.7083C4.46127 14.5534 4.46127 14.3022 4.61619 14.1473L5.75152 13.012C5.90645 12.857 6.15763 12.857 6.31255 13.012L9.94595 16.6454C9.98468 16.6841 10.0475 16.6841 10.0862 16.6454C10.0862 16.6454 10.0862 16.6454 10.0862 16.6454L13.7194 13.012C13.8743 12.857 14.1255 12.857 14.2805 13.012C14.2805 13.012 14.2805 13.012 14.2805 13.012L17.9139 16.6454C17.9526 16.6841 18.0154 16.6841 18.0541 16.6454L21.6874 13.012C21.8424 12.8571 22.0936 12.8571 22.2485 13.012Z&quot; fill=&quot;white&quot;/>%0A</svg>%0A"
                    style="transition: opacity 0.15s linear; user-select: none;border-radius: 50%;">
@@ -746,7 +746,7 @@ watch(isConnected, async (newValue) => {
                     clip-rule="evenodd"></path>
             </svg>
 
-            <div class="wladd" v-if="isConnected">Connected</div>
+            <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
 
             <!--            <div class="wladd_close">-->
@@ -878,60 +878,45 @@ watch(isConnected, async (newValue) => {
               <div class="wallet_addr">0x232465465465q654rsdf65x4g6df4ge6rg54df6g465</div>
             </div> -->
 
+            <div class="btn_box">
 
+              <button :disabled="loading" class="btn_on" v-if="isConnected" @click="showDialog('pleaseConfirm')">
+                <div class="btn_text">Convert</div>
 
-
-
-            <div class="btn_box" :disabled="loading" @click="isConnected ? showDialog('pleaseConfirm') : showDialog(data.defaultShow)">
-              <button class="btn_on" >
-                <div class="btn_text">
-                  <span v-if="!isConnected">Connect Wallet</span>
-                  <span v-else>Convert</span>
-                </div>
                 <div class="proto_icon">
-                  <div v-if="loading" role="button" aria-label="animation" tabindex="0"
-                    style="width: 30px; height: 30px; overflow: hidden; margin: 0px auto; outline: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                      viewBox="0 0 200 200" width="200" height="200" preserveAspectRatio="xMidYMid slice"
-                      style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;">
-                      <defs>
-                        <clipPath id="__lottie_element_82">
-                          <rect width="200" height="200" x="0" y="0"></rect>
-                        </clipPath>
-                      </defs>
-                      <g clip-path="url(#__lottie_element_82)">
-                        <g style="display: block;"
-                          transform="matrix(0.3333333432674408,0,0,0.3333333432674408,107.56632995605469,93.56632995605469)"
-                          opacity="0.1">
-                          <g opacity="1" transform="matrix(1,0,0,1,-22.698999404907227,19.301000595092773)">
-                            <path stroke-linecap="round" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4"
-                              stroke="rgb(190,240,9)" stroke-opacity="1" stroke-width="49"
-                              d=" M0,-184.30099487304688 C101.7157211303711,-184.30099487304688 184.30099487304688,-101.7157211303711 184.30099487304688,0 C184.30099487304688,101.7157211303711 101.7157211303711,184.30099487304688 0,184.30099487304688 C-101.7157211303711,184.30099487304688 -184.30099487304688,101.7157211303711 -184.30099487304688,0 C-184.30099487304688,-101.7157211303711 -101.7157211303711,-184.30099487304688 0,-184.30099487304688z">
-                            </path>
-                          </g>
-                        </g>
-                        <g style="display: block;"
-                          transform="matrix(-0.33111780881881714,0.03836820274591446,-0.03836820274591446,-0.33111780881881714,93.26570129394531,107.25944519042969)"
-                          opacity="0.8">
-                          <g opacity="1" transform="matrix(1,0,0,1,-22.698999404907227,19.301000595092773)">
-                            <path class="loading-svg" stroke-linecap="round" stroke-linejoin="miter" fill-opacity="0"
-                              stroke-miterlimit="4" stroke="rgb(190,240,9)" stroke-opacity="1" stroke-width="49"
-                              d=" M26.43000030517578,182.41600036621094 C17.79800033569336,183.6580047607422 8.972999572753906,184.30099487304688 0,184.30099487304688 C0,184.30099487304688 0,184.30099487304688 0,184.30099487304688">
-                            </path>
-                          </g>
-                        </g>
-                      </g>
-                    </svg>
+
+                  <!--                  <svg v-if="!loading" xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)"-->
+                  <!--                       viewBox="0 0 32 33"-->
+                  <!--                       style="width: var(&#45;&#45;Sizing-4, 20px); height: var(&#45;&#45;Sizing-4, 20px);">-->
+                  <!--                    <path fill-rule="evenodd"-->
+                  <!--                          d="M11.293 5.293a1 1 0 0 1 1.414 0l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L20.586 16l-9.293-9.293a1 1 0 0 1 0-1.414"-->
+                  <!--                          clip-rule="evenodd"></path>-->
+                  <!--                    <path fill-rule="evenodd"-->
+                  <!--                          d="M10.94 4.94a1.5 1.5 0 0 1 2.12 0l10 10a1.5 1.5 0 0 1 0 2.12l-10 10a1.5 1.5 0 0 1-2.12-2.12L19.878 16l-8.94-8.94a1.5 1.5 0 0 1 0-2.12m1.414.706a.5.5 0 0 0-.708.708l9.293 9.292a.5.5 0 0 1 0 .708l-9.293 9.292a.5.5 0 0 0 .708.708l10-10a.5.5 0 0 0 0-.708z"-->
+                  <!--                          clip-rule="evenodd"></path>-->
+                  <!--                  </svg>-->
+                  <div v-if="!loading" style="color: #ffffff;">
+                    >
                   </div>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)" viewBox="0 0 32 33"
-                    style="width: var(--Sizing-4, 20px); height: var(--Sizing-4, 20px);">
-                    <path fill-rule="evenodd"
-                      d="M11.293 5.293a1 1 0 0 1 1.414 0l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L20.586 16l-9.293-9.293a1 1 0 0 1 0-1.414"
-                      clip-rule="evenodd"></path>
-                    <path fill-rule="evenodd"
-                      d="M10.94 4.94a1.5 1.5 0 0 1 2.12 0l10 10a1.5 1.5 0 0 1 0 2.12l-10 10a1.5 1.5 0 0 1-2.12-2.12L19.878 16l-8.94-8.94a1.5 1.5 0 0 1 0-2.12m1.414.706a.5.5 0 0 0-.708.708l9.293 9.292a.5.5 0 0 1 0 .708l-9.293 9.292a.5.5 0 0 0 .708.708l10-10a.5.5 0 0 0 0-.708z"
-                      clip-rule="evenodd"></path>
-                  </svg>
+
+
+                  <div v-else class="loading-spinner"></div>
+                </div>
+              </button>
+
+              <button class="btn_on" v-else @click="showDialog(data.defaultShow)">
+
+                <div class="btn_text">Connect Wallet</div>
+                <div class="proto_icon">
+                  <!--                  <svg xmlns="http://www.w3.org/2000/svg" fill="rgba(255, 255, 255, 1)" viewBox="0 0 32 33"-->
+                  <!--                       style="width: var(&#45;&#45;Sizing-4, 20px); height: var(&#45;&#45;Sizing-4, 20px);">-->
+                  <!--                    <path fill-rule="evenodd"-->
+                  <!--                          d="M11.293 5.293a1 1 0 0 1 1.414 0l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L20.586 16l-9.293-9.293a1 1 0 0 1 0-1.414"-->
+                  <!--                          clip-rule="evenodd"></path>-->
+                  <!--                    <path fill-rule="evenodd"-->
+                  <!--                          d="M10.94 4.94a1.5 1.5 0 0 1 2.12 0l10 10a1.5 1.5 0 0 1 0 2.12l-10 10a1.5 1.5 0 0 1-2.12-2.12L19.878 16l-8.94-8.94a1.5 1.5 0 0 1 0-2.12m1.414.706a.5.5 0 0 0-.708.708l9.293 9.292a.5.5 0 0 1 0 .708l-9.293 9.292a.5.5 0 0 0 .708.708l10-10a.5.5 0 0 0 0-.708z"-->
+                  <!--                          clip-rule="evenodd"></path>-->
+                  <!--                  </svg>-->
                 </div>
               </button>
 
@@ -967,7 +952,7 @@ watch(isConnected, async (newValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">Connected</div>
+            <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
@@ -1023,7 +1008,7 @@ watch(isConnected, async (newValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">Connected</div>
+            <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
@@ -1078,7 +1063,7 @@ watch(isConnected, async (newValue) => {
                     d="M20.853 24.018A4.017 4.017 0 0 1 24.87 20h10.69a4.017 4.017 0 0 1 0 8.035H24.87a4.017 4.017 0 0 1-4.017-4.017m4.017-.684a.684.684 0 1 0 0 1.368h10.69a.684.684 0 0 0 0-1.368z"
                     clip-rule="evenodd"></path>
             </svg>
-            <div class="wladd" v-if="isConnected">Connected</div>
+            <div class="wladd" v-if="isConnected">Wallet Connected</div>
             <div class="wladd pc_open" v-else>Connect Wallet</div>
             <!-- <div class="wladd_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C8C8C8" viewBox="0 0 12 12"
@@ -1141,39 +1126,24 @@ watch(isConnected, async (newValue) => {
   background-color: #CCF33A;
 }
 
-
+/* 禁用按钮样式 */
 button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-
+/* 加载动画 (Spinner) */
 .loading-spinner {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3); 
-  border-top: 3px solid white; 
+  border: 3px solid rgba(255, 255, 255, 0.3); /* 透明边框 */
+  border-top: 3px solid white; /* 只有上方有白色边 */
   border-radius: 50%;
   animation: spin 1s linear infinite;
   display: inline-block;
 }
 
-.page.p1 .swap_box .btn_box .btn_on .proto_icon {
- width: 40px;
- height: 40px;
- background-color: #040404;
- border-radius: 40px;
- text-align: center;
- display: flex;
- align-items: center;
- justify-content: center;
-}
-
-.page.p1 .swap_box .btn_box .btn_on.loading {
- background-color: #000;
-}
-
-
+/* 旋转动画 */
 @keyframes spin {
   0% {
     transform: rotate(0deg);

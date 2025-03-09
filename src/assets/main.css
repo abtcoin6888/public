@@ -366,21 +366,14 @@ body {
   background-color: #040404;
   border-radius: 40px;
   text-align: center;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-}
-
-
-
-.page.p1 .swap_box .btn_box .btn_on .proto_icon svg {
-  margin-top: 10px;
-  color: #ffffff;
-}
-
-
+  }
+  
+  .page.p1 .swap_box .btn_box .btn_on.loading {
+  background-color: #000;
+  }
 
 
 
