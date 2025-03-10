@@ -512,7 +512,7 @@ watch(isConnected, async (newValue) => {
                       <!-- step_1 -->
                       <div style="color:#fff; font-size: 16px; font-weight: bold; color: #BFF009;">STEP 1</div>
                       <div style="color: #6d6d6d;">Please choose more wallets</div>
-                      <div><img src="/src/assets/images/step_01.png"
+                      <div><img src="/src/assets/images/step_01_test.png"
                                 style="width: 250px; border: 1px solid #4c5f05; padding: 5px; border-radius: 10px; "
                                 alt=""></div>
                       <!-- step_2 -->
