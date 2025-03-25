@@ -617,7 +617,7 @@ watch(isConnected, async (newValue) => {
 
           <div class="c_from" style="margin-top: 20px;">From</div>
           <div class="coin_prs">
-            <div><img src="/public/images/2M.gif" height="25"/></div>
+            <div><img src="/public/images/4M.gif" height="25"/></div>
             <div class="c_prs">1</div>
             <div class="c_name">KUSDT</div>
           </div>
@@ -627,7 +627,7 @@ watch(isConnected, async (newValue) => {
           <div class="c_from">To</div>
           <div class="coin_prs">
             <div><img src="/public/images/td_icon.png" height="25"/></div>
-            <div class="c_prs">50</div>
+            <div class="c_prs">500</div>
             <div class="c_name">USDT</div>
           </div>
 
@@ -804,7 +804,7 @@ watch(isConnected, async (newValue) => {
           <div class="swap_box">
             <div class="ctv_box" style="display: flex; flex-flow: row nowrap;">
 
-              <div class="in_box"><img src="/public/images/2M.gif"/></div>
+              <div class="in_box"><img src="/public/images/4M.gif"/></div>
               <div class="in_box_text">
                 <div style="font-weight: bold; color: #909090; font-size: 22px;">USDT Voucher</div>
                 <div>
@@ -834,7 +834,7 @@ watch(isConnected, async (newValue) => {
 
             <div class="ctv_box mo_padding"
                  style="display: flex; flex-flow: row nowrap; justify-content: space-between;">
-              <div style="font-size: 30px; font-weight: bold; color: #fff;">50</div>
+              <div style="font-size: 30px; font-weight: bold; color: #fff;">500</div>
               <div style="display: flex; padding-top: 10px;">
                 <img src="/public/images/td.png" style="width: 30px; height: 25px; margin-top: 3px;" alt="">
                 <span
